@@ -1,6 +1,8 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.InfoUser;
+import edu.hcmuaf.food_order.model.Question;
+import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,12 @@ public class UserAPI {
     UserRepository userRepository;
 
     @Autowired
+    QuestionRepository questionRepository;
+
+    @Autowired
     UserService userService;
+
+//    List<Question> listQuestion;
 
     @GetMapping("/login")
     public String getLogin(Model model) {
@@ -55,8 +62,17 @@ public class UserAPI {
     }
 
     @GetMapping({"/", "/index"})
-    public String getPageHome() {
+    public String getPageHome(Model model) {
+        model.addAttribute("infoUser", new InfoUser());
+        sendQuestion();
         return "index";
+    }
+
+    @RequestMapping(value = {"question"}, method = RequestMethod.POST)
+    private ModelAndView sendQuestion() {
+        ModelAndView mav = new ModelAndView("question");
+        mav.addObject("question", questionRepository.findAll());
+        return mav;
     }
 
 }

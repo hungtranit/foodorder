@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Faq area start -->
+<div id="forum" class="faq-area area-padding-1" th:fragment="question">
+    <div class="container" style="background: #ffffff">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <h2>Faq Question</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="faq-details">
+                    <div class="panel-group" id="accordion">
+                        <!-- Panel Default -->
+                        <div class="panel panel-default" th:each="typeQuestion : ${question}">
+                            <div class="panel-heading">
+                                <h4 class="check-title">
+                                    <a data-toggle="collapse" class="active"
+                                       data-parent="#accordion" href="#check1" th:text="${typeQuestion.getType()}"><span
+                                            class="acc-icons"></span></a>
+                                </h4>
+                            </div>
+                            <div id="check1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="details-question" th:if="${question.size() == 0}">
+                                        <div class="row">
+                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                <div class="entry-content">
+                                                    <span>Không có câu hỏi liên quan đến loại sản phẩm!!!</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="details-question" th:if="${question.size() != 0}"
+                                         th:each="listQuestion : ${question}"
+                                         th:if="${listQuestion.getType() == typeQuestion.getType()}">
+                                        <div class="row">
+                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                                <img>
+                                                <a>img</a>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                <div class="entry-content">
+                                                    <a th:href="@{'/detail-question/' + ${listQuestion.getQuestionid()}}"
+                                                       th:text="${listQuestion.getContent()}"></a>
+                                                </div>
+                                                <div class="entry-meta"><span class="author-meta"><i
+                                                        class="fa fa-user"></i> <a
+                                                        href="#" th:text="${listQuestion.getUsername()}"></a></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                                <div class="entry-meta"><span th:text="${listQuestion.getTimecmt()}"><i
+                                                        class="fa fa-clock-o"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                                <div class="entry-meta"><span><i class="fa fa-comments-o"></i> <a
+                                                        href="#">6 comments</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Panel Default -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Row -->
+    </div>
+</div>
+<!-- End Faq Area -->
+</body>
+</html>

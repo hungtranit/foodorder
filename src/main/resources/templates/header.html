@@ -7,7 +7,7 @@
 <body>
 <header>
     <!-- header-area start -->
-    <div id="sticker" class="header-area">
+    <div id="sticker" class="header-area" th:fragment="header">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -43,7 +43,7 @@
                                 <li><a class="page-scroll" href="#post">Đăng bài</a></li>
                                 <li><a class="page-scroll" href="#portfolio">Portfolio</a>
                                 </li>
-                                <li class="dropdown" th:if="${infoUser.username} == null"><a href="#"
+                                <li class="dropdown" th:if="${infoUser.username == null}"><a href="#"
                                                                                              class="dropdown-toggle"
                                                                                              data-toggle="dropdown"><span
                                         class="caret">Đăng Nhập</span></a>
@@ -52,7 +52,7 @@
                                         <li><a href=#>Quên Mật Khẩu</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" th:if="${infoUser.username} != null"><a href="#"
+                                <li class="dropdown" th:if="${infoUser.username != null}"><a href="#"
                                                                                              class="dropdown-toggle"
                                                                                              data-toggle="dropdown">Chào,
                                     <span
