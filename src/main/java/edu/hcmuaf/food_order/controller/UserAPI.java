@@ -1,7 +1,6 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.InfoUser;
-import edu.hcmuaf.food_order.model.Question;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.UserService;
@@ -47,14 +46,14 @@ public class UserAPI {
         return url;
     }
 
-    @RequestMapping(value = "infoUser", method = RequestMethod.GET)
+    @RequestMapping(value = "infoUser", method = RequestMethod.POST)
     private ModelAndView sendUsername(InfoUser infoUser) {
         ModelAndView mav = new ModelAndView("header");
         mav.addObject("infoUser", infoUser);
         return mav;
     }
 
-    @RequestMapping(value = "errorLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "errorLogin", method = RequestMethod.POST)
     private ModelAndView sendErrorLogin(String message) {
         ModelAndView mav = new ModelAndView("login");
         mav.addObject("errorLogin", message);
@@ -64,15 +63,23 @@ public class UserAPI {
     @GetMapping({"/", "/index"})
     public String getPageHome(Model model) {
         model.addAttribute("infoUser", new InfoUser());
-        sendQuestion();
+        model.addAttribute("question", questionRepository.findAll());
+//        model.addAttribute("list_type", questionRepository.listTypeQuestion());
+        sendListQuestion();
+//        sendListType();
         return "index";
     }
 
-    @RequestMapping(value = {"question"}, method = RequestMethod.POST)
-    private ModelAndView sendQuestion() {
+    @RequestMapping(value = "question", method = RequestMethod.POST)
+    private ModelAndView sendListQuestion() {
         ModelAndView mav = new ModelAndView("question");
-        mav.addObject("question", questionRepository.findAll());
         return mav;
     }
+
+//    @RequestMapping(value = "list_type", method = RequestMethod.POST)
+//    private ModelAndView sendListType() {
+//        ModelAndView mav = new ModelAndView("list_type");
+//        return mav;
+//    }
 
 }

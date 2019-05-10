@@ -4,26 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="CMTTOQUESTION")
+@Table(name = "QUESTION")
 public class Question {
+
+    public Question(String typeproduct) {
+        this.typeproduct = typeproduct;
+    }
 
     @Id
     @Column(name = "questionid", nullable = false)
     private int questionid;
     @Column(name = "typeproduct", nullable = false)
-    private int type;
+    private String typeproduct;
     @Column(name = "content", nullable = false)
     private String content;
-    @Column(name = "timecmt", nullable = false)
-    private Date timecmt;
+    @Column(name = "timequestion", nullable = false)
+    private Date timeQuestion;
     @Column(name = "username", nullable = false)
     private String username;
 

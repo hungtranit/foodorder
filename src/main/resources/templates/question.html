@@ -24,13 +24,15 @@
                             <div class="panel-heading">
                                 <h4 class="check-title">
                                     <a data-toggle="collapse" class="active"
-                                       data-parent="#accordion" href="#check1" th:text="${typeQuestion.getType()}"><span
-                                            class="acc-icons"></span></a>
+                                       data-parent="#accordion"
+                                       th:href="@{'#check'+${typeQuestion.getTypeproduct()}}"><span
+                                            class="acc-icons" th:text="${typeQuestion.getTypeproduct()}"></span></a>
                                 </h4>
                             </div>
-                            <div id="check1" class="panel-collapse collapse in">
+                            <div th:if="${question.size() == 0}" th:id="'check'+${typeQuestion.getTypeproduct()}"
+                                 class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <div class="details-question" th:if="${question.size() == 0}">
+                                    <div class="details-question">
                                         <div class="row">
                                             <div class="col-md-1 col-sm-1 col-xs-1">
                                             </div>
@@ -43,9 +45,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="details-question" th:if="${question.size() != 0}"
-                                         th:each="listQuestion : ${question}"
-                                         th:if="${listQuestion.getType() == typeQuestion.getType()}">
+                                </div>
+                            </div>
+                            <div th:if="${question.size() != 0}" th:id="'check'+${typeQuestion.getTypeproduct()}"
+                                 class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div th:each="listQuestion : ${question}"
+                                         th:if="${listQuestion.getTypeproduct() == typeQuestion.getTypeproduct()}"
+                                         class="details-question">
                                         <div class="row">
                                             <div class="col-md-1 col-sm-1 col-xs-1">
                                                 <img>
@@ -62,7 +69,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1 col-sm-1 col-xs-1">
-                                                <div class="entry-meta"><span th:text="${listQuestion.getTimecmt()}"><i
+                                                <div class="entry-meta"><span
+                                                        th:text="${listQuestion.getTimeQuestion()}"><i
                                                         class="fa fa-clock-o"></i></span>
                                                 </div>
                                             </div>
