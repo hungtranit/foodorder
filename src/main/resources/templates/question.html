@@ -20,16 +20,16 @@
                 <div class="faq-details">
                     <div class="panel-group" id="accordion">
                         <!-- Panel Default -->
-                        <div class="panel panel-default" th:each="typeQuestion : ${question}">
+                        <div class="panel panel-default" th:each="typequesion : ${typequestion}">
                             <div class="panel-heading">
                                 <h4 class="check-title">
                                     <a data-toggle="collapse" class="active"
                                        data-parent="#accordion"
-                                       th:href="@{'#check'+${typeQuestion.getTypeproduct()}}"><span
-                                            class="acc-icons" th:text="${typeQuestion.getTypeproduct()}"></span></a>
+                                       th:href="@{'#check'+${typequesion.getTypeproduct()}}"><span
+                                            class="acc-icons" th:text="${typequesion.getTypeproduct()}"></span></a>
                                 </h4>
                             </div>
-                            <div th:if="${question.size() == 0}" th:id="'check'+${typeQuestion.getTypeproduct()}"
+                            <div th:if="${question.size() == 0}" th:id="'check'+${typequesion.getTypeproduct()}"
                                  class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <div class="details-question">
@@ -47,11 +47,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div th:if="${question.size() != 0}" th:id="'check'+${typeQuestion.getTypeproduct()}"
+                            <div th:if="${question.size() != 0}" th:id="'check'+${typequesion.getTypeproduct()}"
                                  class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <div th:each="listQuestion : ${question}"
-                                         th:if="${listQuestion.getTypeproduct() == typeQuestion.getTypeproduct()}"
+                                         th:if="${listQuestion.getTypeproduct() == typequesion.getTypeproduct()}"
                                          class="details-question">
                                         <div class="row">
                                             <div class="col-md-1 col-sm-1 col-xs-1">

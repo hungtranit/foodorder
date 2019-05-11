@@ -1,6 +1,5 @@
 package edu.hcmuaf.food_order.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,13 +8,22 @@ import java.util.Date;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "QUESTION")
 public class Question {
 
     public Question(String typeproduct) {
         this.typeproduct = typeproduct;
+    }
+
+    public Question() {
+    }
+
+    public Question(int questionid, String typeproduct, String content, Date timeQuestion, String username) {
+        this.questionid = questionid;
+        this.typeproduct = typeproduct;
+        this.content = content;
+        this.timeQuestion = timeQuestion;
+        this.username = username;
     }
 
     @Id

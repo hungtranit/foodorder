@@ -1,14 +1,19 @@
 package edu.hcmuaf.food_order.controller;
 
+import edu.hcmuaf.food_order.dao.QuestionDAO;
 import edu.hcmuaf.food_order.model.InfoUser;
+import edu.hcmuaf.food_order.model.Question;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
+import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserAPI {
@@ -22,6 +27,9 @@ public class UserAPI {
     @Autowired
     UserService userService;
 
+    @Autowired
+    QuestionService questionService;
+
 //    List<Question> listQuestion;
 
     @GetMapping("/login")
@@ -31,7 +39,7 @@ public class UserAPI {
     }
 
     @PostMapping("/login")
-    public String postLogin(@ModelAttribute("infoUser") InfoUser infoUser) {
+    public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
         String url = "";
         if (userService.login(infoUser.getUsername(), infoUser.getPassword())) {
             System.out.println("login success");
@@ -40,7 +48,9 @@ public class UserAPI {
             url = "index";
         } else {
             System.out.println("login fail");
-            sendErrorLogin("Tài khoản hoặc khẩu không đúng");
+            String massage = "Tài khoản hoặc khẩu không đúng";
+            model.addAttribute("errorLogin", massage);
+            sendErrorLogin(massage);
             url = "login";
         }
         return url;
@@ -64,22 +74,24 @@ public class UserAPI {
     public String getPageHome(Model model) {
         model.addAttribute("infoUser", new InfoUser());
         model.addAttribute("question", questionRepository.findAll());
-//        model.addAttribute("list_type", questionRepository.listTypeQuestion());
-        sendListQuestion();
-//        sendListType();
+        sendListQuestion(questionRepository.findAll());
+        model.addAttribute("typequestion", questionService.findDistinctType());
+        sendTypeQuestion(questionService.findDistinctType());
         return "index";
     }
 
     @RequestMapping(value = "question", method = RequestMethod.POST)
-    private ModelAndView sendListQuestion() {
+    private ModelAndView sendListQuestion(List<Question> questionList) {
         ModelAndView mav = new ModelAndView("question");
+        mav.addObject("question", questionList);
         return mav;
     }
 
-//    @RequestMapping(value = "list_type", method = RequestMethod.POST)
-//    private ModelAndView sendListType() {
-//        ModelAndView mav = new ModelAndView("list_type");
-//        return mav;
-//    }
+    @RequestMapping(value = "typequestion", method = RequestMethod.POST)
+    private ModelAndView sendTypeQuestion(List<Question> typeQuestion) {
+        ModelAndView mav = new ModelAndView("question");
+        mav.addObject("typequestion", typeQuestion);
+        return mav;
+    }
 
 }
