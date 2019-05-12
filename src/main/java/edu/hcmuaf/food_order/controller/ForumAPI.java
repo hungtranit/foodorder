@@ -1,16 +1,21 @@
 package edu.hcmuaf.food_order.controller;
 
+import edu.hcmuaf.food_order.model.Comment;
 import edu.hcmuaf.food_order.model.InfoUser;
 import edu.hcmuaf.food_order.model.Question;
+import edu.hcmuaf.food_order.model.Rep;
+import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
+import edu.hcmuaf.food_order.repository.RepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class ForumAPI {
@@ -18,11 +23,21 @@ public class ForumAPI {
     @Autowired
     QuestionRepository questionRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
+    RepRepository repRepository;
+
     @GetMapping("/detail-question/{questionID}")
     public String getQuestion(Model model, @PathVariable int questionID, Question question) {
         question = questionRepository.getOne(questionID);
         model.addAttribute("detailquestion", question);
         sendDetailQuestion(question);
+        model.addAttribute("listComment", commentRepository.findAllByQuestionID(questionID));
+        sendListComment(commentRepository.findAllByQuestionID(questionID));
+        model.addAttribute("listRep", repRepository.findAll());
+        sendListRep(repRepository.findAll());
         model.addAttribute("infoUser", new InfoUser());
         sendUsername(new InfoUser());
         return "detail-question";
@@ -32,6 +47,20 @@ public class ForumAPI {
     private ModelAndView sendDetailQuestion(Question question) {
         ModelAndView mav = new ModelAndView("detail-question");
         mav.addObject("detailquestion", question);
+        return mav;
+    }
+
+    @RequestMapping(value = "listComment", method = RequestMethod.GET)
+    private ModelAndView sendListComment(List<Comment> commentList) {
+        ModelAndView mav = new ModelAndView("detail-question");
+        mav.addObject("listComment", commentList);
+        return mav;
+    }
+
+    @RequestMapping(value = "listRep", method = RequestMethod.GET)
+    private ModelAndView sendListRep(List<Rep> repList) {
+        ModelAndView mav = new ModelAndView("detail-question");
+        mav.addObject("listRep", repList);
         return mav;
     }
 

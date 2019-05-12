@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -18,8 +19,10 @@ public class InfoUser {
 
     @Id
     @Column(name = "username", nullable = false)
+    @NotEmpty(message = "Enter last name.")
     private String username;
     @Column(name = "passworduser", nullable = false)
+    @NotEmpty(message = "Enter last password.")
     private String password;
     @Column(name = "firstname", nullable = false)
     private String firstName;
