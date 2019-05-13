@@ -7,6 +7,7 @@ import edu.hcmuaf.food_order.model.Rep;
 import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.RepRepository;
+import edu.hcmuaf.food_order.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.http.MediaType;
@@ -29,6 +30,9 @@ public class ForumAPI {
     @Autowired
     RepRepository repRepository;
 
+    @Autowired
+    QuestionService questionService;
+
     @GetMapping("/detail-question/{questionID}")
     public String getQuestion(Model model, @PathVariable int questionID, Question question) {
         question = questionRepository.getOne(questionID);
@@ -40,6 +44,8 @@ public class ForumAPI {
         sendListRep(repRepository.findAll());
         model.addAttribute("infoUser", new InfoUser());
         sendUsername(new InfoUser());
+        model.addAttribute("typequestion", questionService.findDistinctType());
+        sendTypeQuestion(questionService.findDistinctType());
         return "detail-question";
     }
 
@@ -68,6 +74,13 @@ public class ForumAPI {
     private ModelAndView sendUsername(InfoUser infoUser) {
         ModelAndView mav = new ModelAndView("header");
         mav.addObject("infoUser", infoUser);
+        return mav;
+    }
+
+    @RequestMapping(value = "typequestion", method = RequestMethod.GET)
+    private ModelAndView sendTypeQuestion(List<Question> typeQuestion) {
+        ModelAndView mav = new ModelAndView("detail-question");
+        mav.addObject("typequestion", typeQuestion);
         return mav;
     }
 
