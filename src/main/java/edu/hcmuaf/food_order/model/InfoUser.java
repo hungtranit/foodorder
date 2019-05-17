@@ -20,18 +20,14 @@ public class InfoUser {
 
     @Id
     @Column(name = "username", nullable = false)
-    @NotEmpty(message = "Enter last name.")
+    @NotEmpty(message = "Enter name.")
     @Length.List({
-            @Length(min = 8, message = "The username must be at least 8 characters"),
+            @Length(min = 4, message = "The username must be at least 4 characters"),
             @Length(max = 24, message = "The username must be less than 24 characters")
     })
     private String username;
     @Column(name = "passworduser", nullable = false)
-    @NotEmpty(message = "Enter last password.")
-    @Length.List({
-            @Length(min = 8, message = "The password must be at least 8 characters"),
-            @Length(max = 24, message = "The password must be less than 24 characters")
-    })
+    @NotEmpty(message = "Enter password.")
     private String password;
     @Column(name = "firstname", nullable = false)
     private String firstName;

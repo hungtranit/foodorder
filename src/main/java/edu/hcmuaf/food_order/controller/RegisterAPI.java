@@ -6,9 +6,7 @@ import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegisterAPI {
@@ -23,9 +21,13 @@ public class RegisterAPI {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") InfoUser infoUser) {
-        infoUser.setPassword(UserUtil.encryptPassword(infoUser.getPassword()));
-        userRepository.save(infoUser);
+    @ResponseBody
+    public String registerUser(@ModelAttribute("user") InfoUser user) {
+        System.out.println("run method");
+        user.setPassword(UserUtil.encryptPassword(user.getPassword()));
+        System.out.println("encrypt password");
+        //
+        System.out.println("save user");
         return "login";
     }
 
