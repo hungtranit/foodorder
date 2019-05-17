@@ -113,7 +113,7 @@
                                                 </div>
                                                 <div class="comments-content-wrap">
 														<span> <b><a href="#"
-                                                                     th:text="${cmtList.getUsername()}"></a></b><span
+                                                                     th:text="${cmtList.getUserCMT()}"></a></b><span
                                                                 class="post-time"
                                                                 th:text="${cmtList.getTimecmt()}"></span> <a
                                                                 href="#">Reply</a>
@@ -143,12 +143,23 @@
                                 </div>
                             </div>
                             <div class="comment-respond">
-                                <h3 class="comment-reply-title">Bình luận</h3>
-                                <form>
+                                <h3 class="comment-reply-title" th:if="${checkUser.getUsername() != null}">Bình
+                                    luận</h3>
+                                <h3 class="comment-reply-title" th:if="${checkUser.getUsername() == null}">Để có thể
+                                    bình luận bạn cần phải <a href="../login">Đăng Nhập</a>!</h3>
+                                <form th:if="${checkUser.getUsername() != null}" th:action="@{/add-comment}"
+                                      th:object="${comment}">
                                     <div class="row">
                                         <div
                                                 class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                                            <textarea id="message-box" cols="30" rows="3"></textarea>
+                                            <textarea id="message-box" cols="30" rows="3"
+                                                      th:field="*{content}"></textarea>
+                                            <input th:type="hidden"
+                                                   th:value="${detailquestion.getQuestionid()}"
+                                                   th:attr="name='questionID'">
+                                            <input th:type="hidden"
+                                                   th:value="${checkUser.getUsername()}"
+                                                   th:attr="name='userCMT'">
                                             <input type="submit" value="Post Comment"/>
                                         </div>
                                     </div>

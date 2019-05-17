@@ -1,8 +1,6 @@
 package edu.hcmuaf.food_order.controller;
 
-import edu.hcmuaf.food_order.dao.QuestionDAO;
 import edu.hcmuaf.food_order.model.InfoUser;
-import edu.hcmuaf.food_order.model.Question;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
@@ -13,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserAPI {
@@ -30,7 +28,8 @@ public class UserAPI {
     @Autowired
     QuestionService questionService;
 
-//    List<Question> listQuestion;
+    @Autowired
+    SendDataAPI sendDataAPI;
 
     @GetMapping("/login")
     public String getLogin(Model model) {
@@ -40,58 +39,64 @@ public class UserAPI {
 
     @PostMapping("/login")
     public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
-        String url = "";
+        String url;
         if (userService.login(infoUser.getUsername(), infoUser.getPassword())) {
             System.out.println("login success");
             infoUser = userRepository.getOne(infoUser.getUsername());
-            sendUsername(infoUser);
+            sendDataAPI.setInfoUserSession(infoUser);
+            sendDataAPI.getSession().setAttribute("infoUser", infoUser);
+            getPageHome(model);
             url = "index";
         } else {
             System.out.println("login fail");
             String massage = "Tài khoản hoặc khẩu không đúng";
             model.addAttribute("errorLogin", massage);
-            sendErrorLogin(massage);
             url = "login";
         }
         return url;
     }
 
-    @RequestMapping(value = "infoUser", method = RequestMethod.POST)
-    private ModelAndView sendUsername(InfoUser infoUser) {
-        ModelAndView mav = new ModelAndView("header");
-        mav.addObject("infoUser", infoUser);
+    @GetMapping({"/", "/index"})
+    public String getPageHome(Model model) {
+        model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
+        sendDataAPI.sendInfoUser();
+        model.addAttribute("question", questionRepository.findAll());
+        sendListQuestion();
+        model.addAttribute("typequestion", questionService.findDistinctType());
+        sendTypeQuestion();
+        return "index";
+    }
+
+    @RequestMapping(value = "typequestion", method = RequestMethod.POST)
+    public ModelAndView sendTypeQuestion() {
+        ModelAndView mav = new ModelAndView("question");
+        mav.addObject("typequestion", questionService.findDistinctType());
+        return mav;
+    }
+
+    @RequestMapping(value = "question", method = RequestMethod.POST)
+    public ModelAndView sendListQuestion() {
+        ModelAndView mav = new ModelAndView("question");
+        mav.addObject("question", questionRepository.findAll());
         return mav;
     }
 
     @RequestMapping(value = "errorLogin", method = RequestMethod.POST)
-    private ModelAndView sendErrorLogin(String message) {
+    public ModelAndView sendError(String errorLogin) {
         ModelAndView mav = new ModelAndView("login");
-        mav.addObject("errorLogin", message);
+        mav.addObject("errorLogin", errorLogin);
         return mav;
     }
 
-    @GetMapping({"/", "/index"})
-    public String getPageHome(Model model) {
-        model.addAttribute("infoUser", new InfoUser());
+    @GetMapping("/logout")
+    public String logout(Model model, HttpSession session) {
+        session.removeAttribute("infoUser");
+        sendDataAPI.setInfoUserSession(new InfoUser());
+        model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
+        sendDataAPI.sendInfoUser();
         model.addAttribute("question", questionRepository.findAll());
-        sendListQuestion(questionRepository.findAll());
         model.addAttribute("typequestion", questionService.findDistinctType());
-        sendTypeQuestion(questionService.findDistinctType());
         return "index";
-    }
-
-    @RequestMapping(value = "question", method = RequestMethod.POST)
-    private ModelAndView sendListQuestion(List<Question> questionList) {
-        ModelAndView mav = new ModelAndView("question");
-        mav.addObject("question", questionList);
-        return mav;
-    }
-
-    @RequestMapping(value = "typequestion", method = RequestMethod.POST)
-    private ModelAndView sendTypeQuestion(List<Question> typeQuestion) {
-        ModelAndView mav = new ModelAndView("question");
-        mav.addObject("typequestion", typeQuestion);
-        return mav;
     }
 
 }

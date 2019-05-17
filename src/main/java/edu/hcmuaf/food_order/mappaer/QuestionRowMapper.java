@@ -14,4 +14,5 @@ public class QuestionRowMapper implements RowMapper<Question> {
         question.setTypeproduct(rs.getString("typeproduct"));
         return question;
     }
+
 }

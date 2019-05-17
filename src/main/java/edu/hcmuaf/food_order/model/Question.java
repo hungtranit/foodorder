@@ -27,6 +27,7 @@ public class Question {
 
     @Id
     @Column(name = "questionid", nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int questionid;
     @Column(name = "typeproduct", nullable = false)
     private String typeproduct;

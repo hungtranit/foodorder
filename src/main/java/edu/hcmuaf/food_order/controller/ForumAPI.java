@@ -1,22 +1,17 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.Comment;
-import edu.hcmuaf.food_order.model.InfoUser;
 import edu.hcmuaf.food_order.model.Question;
-import edu.hcmuaf.food_order.model.Rep;
 import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.RepRepository;
+import edu.hcmuaf.food_order.service.CommentService;
 import edu.hcmuaf.food_order.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.query.Procedure;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class ForumAPI {
@@ -33,55 +28,49 @@ public class ForumAPI {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    SendDataAPI sendDataAPI = new SendDataAPI();
+
+    @Autowired
+    CommentService commentService;
+
+    private Question question = null;
+    private int idQuestion = 0;
+    private String url = "detail-question";
+
     @GetMapping("/detail-question/{questionID}")
-    public String getQuestion(Model model, @PathVariable int questionID, Question question) {
+    public String getQuestion(Model model, @PathVariable int questionID) {
         question = questionRepository.getOne(questionID);
-        model.addAttribute("detailquestion", question);
-        sendDetailQuestion(question);
-        model.addAttribute("listComment", commentRepository.findAllByQuestionID(questionID));
-        sendListComment(commentRepository.findAllByQuestionID(questionID));
-        model.addAttribute("listRep", repRepository.findAll());
-        sendListRep(repRepository.findAll());
-        model.addAttribute("infoUser", new InfoUser());
-        sendUsername(new InfoUser());
-        model.addAttribute("typequestion", questionService.findDistinctType());
-        sendTypeQuestion(questionService.findDistinctType());
-        return "detail-question";
-    }
-
-    @RequestMapping(value = "detailquestion", method = RequestMethod.GET)
-    private ModelAndView sendDetailQuestion(Question question) {
-        ModelAndView mav = new ModelAndView("detail-question");
-        mav.addObject("detailquestion", question);
-        return mav;
-    }
-
-    @RequestMapping(value = "listComment", method = RequestMethod.GET)
-    private ModelAndView sendListComment(List<Comment> commentList) {
-        ModelAndView mav = new ModelAndView("detail-question");
-        mav.addObject("listComment", commentList);
-        return mav;
-    }
-
-    @RequestMapping(value = "listRep", method = RequestMethod.GET)
-    private ModelAndView sendListRep(List<Rep> repList) {
-        ModelAndView mav = new ModelAndView("detail-question");
-        mav.addObject("listRep", repList);
-        return mav;
-    }
-
-    @RequestMapping(value = "infoUser", method = RequestMethod.GET)
-    private ModelAndView sendUsername(InfoUser infoUser) {
-        ModelAndView mav = new ModelAndView("header");
-        mav.addObject("infoUser", infoUser);
-        return mav;
+        idQuestion = questionID;
+        sendDetailQuestion(model, questionID, url);
+        return url;
     }
 
     @RequestMapping(value = "typequestion", method = RequestMethod.GET)
-    private ModelAndView sendTypeQuestion(List<Question> typeQuestion) {
+    private ModelAndView sendTypeQuestion() {
         ModelAndView mav = new ModelAndView("detail-question");
-        mav.addObject("typequestion", typeQuestion);
+        mav.addObject("typequestion", questionService.findDistinctType());
         return mav;
+    }
+
+    @GetMapping("/add-comment")
+    public String addComment(Model model, @ModelAttribute("comment") Comment comment) {
+        commentService.insertComment(comment);
+        sendDetailQuestion(model, idQuestion, url);
+        return "detail-question";
+    }
+
+    private void sendDetailQuestion(Model model, int questionID, String url) {
+        model.addAttribute("detailquestion", question);
+        model.addAttribute("listComment", commentRepository.findAllByQuestionID(questionID));
+        model.addAttribute("listRep", repRepository.findAll());
+        sendDataAPI.sendInfoUser();
+        sendDataAPI.getSession().getAttribute("infoUser");
+        sendDataAPI.getPage(model, url);
+        model.addAttribute("typequestion", questionService.findDistinctType());
+        sendTypeQuestion();
+        model.addAttribute("checkUser", sendDataAPI.getInfoUserSession());
+        model.addAttribute("comment", new Comment());
     }
 
 }
