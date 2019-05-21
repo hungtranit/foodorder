@@ -1,6 +1,5 @@
 package edu.hcmuaf.food_order.dao;
 
-import edu.hcmuaf.food_order.model.Comment;
 import edu.hcmuaf.food_order.model.InfoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -20,10 +19,10 @@ public class UserDAO {
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("username", infoUser.getUsername())
                 .addValue("passworduser", infoUser.getPassword())
-                .addValue("firstname", infoUser.getFirstName())
-                .addValue("lastname", infoUser.getLastName())
+                .addValue("firstname", infoUser.getFirstname())
+                .addValue("lastname", infoUser.getLastname())
                 .addValue("addressofuser", infoUser.getAddress())
-                .addValue("email", infoUser.getMail())
+                .addValue("email", infoUser.getEmail())
                 .addValue("phone", infoUser.getPhone())
                 .addValue("avatar", infoUser.getAvatar());
         namedParameterJdbcTemplate.update(SQL, parameterSource, holder);

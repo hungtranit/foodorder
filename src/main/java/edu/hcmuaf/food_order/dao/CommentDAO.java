@@ -1,7 +1,5 @@
 package edu.hcmuaf.food_order.dao;
 
-
-import edu.hcmuaf.food_order.mappaer.CommentRowMapper;
 import edu.hcmuaf.food_order.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -26,7 +24,6 @@ public class CommentDAO {
                 .addValue("content", comment.getContent())
                 .addValue("username", comment.getUserCMT());
         namedParameterJdbcTemplate.update(SQL, parameterSource, holder);
-//        comment.setCmtID(holder.getKey().intValue());
         return comment;
     }
 

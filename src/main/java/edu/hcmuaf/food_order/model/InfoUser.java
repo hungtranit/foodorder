@@ -20,23 +20,18 @@ public class InfoUser {
 
     @Id
     @Column(name = "username", nullable = false)
-    @NotEmpty(message = "Enter name.")
-    @Length.List({
-            @Length(min = 4, message = "The username must be at least 4 characters"),
-            @Length(max = 24, message = "The username must be less than 24 characters")
-    })
     private String username;
     @Column(name = "passworduser", nullable = false)
     @NotEmpty(message = "Enter password.")
     private String password;
     @Column(name = "firstname", nullable = false)
-    private String firstName;
+    private String firstname;
     @Column(name = "lastname", nullable = false)
-    private String lastName;
+    private String lastname;
     @Column(name = "addressofuser", nullable = false)
     private String address;
     @Column(name = "email", nullable = false)
-    private String mail;
+    private String email;
     @Column(name = "phone", nullable = false)
     private String phone;
     @Column(name = "avatar", nullable = false)
@@ -47,10 +42,10 @@ public class InfoUser {
         return "InfoUser{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstname + '\'' +
+                ", lastName='" + lastname + '\'' +
                 ", address='" + address + '\'' +
-                ", mail='" + mail + '\'' +
+                ", mail='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
                 '}';

@@ -446,7 +446,7 @@ input {
 }
 
 .card-1 .card-body {
-  padding: 0 90px;
+  padding: 0 35px;
   padding-top: 55px;
   padding-bottom: 65px;
 }
@@ -457,4 +457,13 @@ input {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+}
+
+textarea {
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  resize: none;
 }

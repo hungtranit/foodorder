@@ -53,11 +53,19 @@ public class ForumAPI {
         return mav;
     }
 
-    @GetMapping("/add-comment")
-    public String addComment(Model model, @ModelAttribute("comment") Comment comment) {
+//    @PostMapping("/add-comment")
+//    public ResponseEntity<?> addComment(Model model, Comment comment) {
+//        commentService.insertComment(comment);
+//        comment = commentRepository.getOne(commentRepository.getMaxId());
+//        return ResponseEntity.ok(comment);
+//    }
+
+    @PostMapping("/add-comment")
+    public String addComment(Model model, Comment comment) {
         commentService.insertComment(comment);
+        sendTypeQuestion();
         sendDetailQuestion(model, idQuestion, url);
-        return "detail-question";
+        return url;
     }
 
     private void sendDetailQuestion(Model model, int questionID, String url) {
@@ -71,6 +79,11 @@ public class ForumAPI {
         sendTypeQuestion();
         model.addAttribute("checkUser", sendDataAPI.getInfoUserSession());
         model.addAttribute("comment", new Comment());
+    }
+
+    @GetMapping("/post-product")
+    public String getPostProduct() {
+        return "/post-product";
     }
 
 }

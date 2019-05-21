@@ -13,10 +13,10 @@ public class UserRowMapper implements RowMapper<InfoUser> {
         InfoUser infoUser = new InfoUser();
         infoUser.setUsername(rs.getString("username"));
         infoUser.setPassword(rs.getString("passworduser"));
-        infoUser.setFirstName(rs.getString("firstname"));
-        infoUser.setLastName(rs.getString("lastname"));
+        infoUser.setFirstname(rs.getString("firstname"));
+        infoUser.setLastname(rs.getString("lastname"));
         infoUser.setAddress(rs.getString("addressofuser"));
-        infoUser.setMail(rs.getString("email"));
+        infoUser.setEmail(rs.getString("email"));
         infoUser.setPhone(rs.getString("phone"));
         infoUser.setAvatar(rs.getString("avatar"));
         return null;

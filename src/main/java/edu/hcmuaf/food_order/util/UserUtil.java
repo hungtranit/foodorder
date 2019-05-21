@@ -37,7 +37,7 @@ public class UserUtil {
 
 //    public boolean sendMail(String mail) {
 //        String newPassword = randomPassword(14);
-//        userRepository.save(mail, encryptPassword(newPassword));
+////        userRepository.save(mail, encryptPassword(newPassword));
 //        updatePassword(mail, encryptPassword(newPassword));
 //        Properties props = new Properties();
 //        props.put("mail.smtp.auth", "true");
