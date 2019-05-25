@@ -8,10 +8,13 @@ import edu.hcmuaf.food_order.repository.RepRepository;
 import edu.hcmuaf.food_order.service.CommentService;
 import edu.hcmuaf.food_order.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class ForumAPI {
@@ -53,20 +56,22 @@ public class ForumAPI {
         return mav;
     }
 
-//    @PostMapping("/add-comment")
-//    public ResponseEntity<?> addComment(Model model, Comment comment) {
-//        commentService.insertComment(comment);
-//        comment = commentRepository.getOne(commentRepository.getMaxId());
-//        return ResponseEntity.ok(comment);
-//    }
-
-    @PostMapping("/add-comment")
-    public String addComment(Model model, Comment comment) {
+    @RequestMapping(value = "/add-comment", method = RequestMethod.POST)
+    public ResponseEntity<?> addComment(Model model, @Valid @RequestBody Comment comment) {
+        comment = new Comment(idQuestion, comment.getContent(), sendDataAPI.getInfoUserSession().getUsername());
         commentService.insertComment(comment);
-        sendTypeQuestion();
-        sendDetailQuestion(model, idQuestion, url);
-        return url;
+        comment = commentRepository.getOne(commentRepository.getMaxId());
+        model.addAttribute("comment", new Comment());
+        return ResponseEntity.ok(comment);
     }
+
+//    @PostMapping("/add-comment")
+//    public String addComment(Model model, Comment comment) {
+//        commentService.insertComment(comment);
+//        sendTypeQuestion();
+//        sendDetailQuestion(model, idQuestion, url);
+//        return url;
+//    }
 
     private void sendDetailQuestion(Model model, int questionID, String url) {
         model.addAttribute("detailquestion", question);

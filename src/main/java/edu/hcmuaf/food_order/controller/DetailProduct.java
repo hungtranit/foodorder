@@ -11,9 +11,8 @@ public class DetailProduct {
     @Autowired
     SendDataAPI sendDataAPI;
 
-    @GetMapping("/product-forum")
+    @GetMapping("/product-forum/{product-id}")
     public String redirectProductForum(Model model) {
-        model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         return "product-forum";
     }
