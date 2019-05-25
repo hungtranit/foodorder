@@ -10,6 +10,12 @@ import java.util.Date;
 @Table(name = "REPCMT")
 public class Rep {
 
+    public Rep(String content, int cmtid, String username) {
+        this.content = content;
+        this.cmtid = cmtid;
+        this.username = username;
+    }
+
     @Id
     @Column(name = "repid", nullable = false)
     @GeneratedValue(strategy= GenerationType.AUTO)

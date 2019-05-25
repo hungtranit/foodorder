@@ -4,12 +4,9 @@ $(document).ready(function () {
         comment();
     });
 });
-
 function comment() {
-
     var comment = {}
     comment["content"] = $("#message-box").val();
-
     $.ajax(this.href, {
         type: "POST",
         contentType: "application/json",
@@ -34,5 +31,8 @@ function comment() {
             console.log("ERROR : ", e);
         }
     })
-
 }
+
+$(document).ready(function () {
+
+});

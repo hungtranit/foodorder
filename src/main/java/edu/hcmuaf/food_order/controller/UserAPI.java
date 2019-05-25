@@ -99,4 +99,18 @@ public class UserAPI {
         return "index";
     }
 
+    @RequestMapping(value = "/check-email", method = RequestMethod.POST)
+    public int checkEmail(@RequestParam(value = "email") String email) {
+        int message;
+        System.out.println("check email: ............");
+        if (userRepository.existsByEmail(email)) {
+            message = 1;
+        } else {
+            message = 0;
+        }
+        return message;
+    }
+
+
+
 }

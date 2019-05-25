@@ -2,6 +2,7 @@ package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.Comment;
 import edu.hcmuaf.food_order.model.Question;
+import edu.hcmuaf.food_order.model.Rep;
 import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.RepRepository;
@@ -57,21 +58,20 @@ public class ForumAPI {
     }
 
     @RequestMapping(value = "/add-comment", method = RequestMethod.POST)
-    public ResponseEntity<?> addComment(Model model, @Valid @RequestBody Comment comment) {
+    public ResponseEntity<?> addComment(@Valid @RequestBody Comment comment) {
         comment = new Comment(idQuestion, comment.getContent(), sendDataAPI.getInfoUserSession().getUsername());
         commentService.insertComment(comment);
         comment = commentRepository.getOne(commentRepository.getMaxId());
-        model.addAttribute("comment", new Comment());
         return ResponseEntity.ok(comment);
     }
 
-//    @PostMapping("/add-comment")
-//    public String addComment(Model model, Comment comment) {
-//        commentService.insertComment(comment);
-//        sendTypeQuestion();
-//        sendDetailQuestion(model, idQuestion, url);
-//        return url;
-//    }
+    @RequestMapping(value = "/rep", method = RequestMethod.POST)
+    public ResponseEntity<?> addRep(@Valid @RequestBody Rep rep) {
+        rep = new Rep(rep.getContent(), rep.getCmtid(), sendDataAPI.getInfoUserSession().getUsername());
+        repRepository.save(rep);
+        rep = repRepository.getOne(repRepository.getMaxId());
+        return ResponseEntity.ok(rep);
+    }
 
     private void sendDetailQuestion(Model model, int questionID, String url) {
         model.addAttribute("detailquestion", question);
