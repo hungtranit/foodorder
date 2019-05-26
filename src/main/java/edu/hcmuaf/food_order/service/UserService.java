@@ -17,7 +17,7 @@ public class UserService {
 
     public boolean login(String username, String password) {
         if (userRepository.getOne(username).getUsername().equalsIgnoreCase(username) &&
-                userRepository.getOne(username).getPassword().equals(UserUtil.encryptPassword(password))) {
+                userRepository.getOne(username).getPassworduser().equals(UserUtil.encryptPassword(password))) {
             return true;
         }
         return false;

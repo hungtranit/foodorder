@@ -37,17 +37,17 @@
       ======================================================= -->
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
+<div id="preloader"></div>
 <div th:insert="header.html :: header"></div>
 <div th:fragment="header"></div>
 <div th:insert="slider.html :: slider"></div>
 <div th:fragment="slider"></div>
-<div id="preloader"></div>
 
-<div th:insert="services.html :: shop"></div>
-<div th:fragment="shop"></div>
+<div th:insert="services.html :: team"></div>
+<div th:fragment="team"></div>
 
-<div th:insert="products.html :: products"></div>
-<div th:fragment="products"></div>
+<div th:insert="products.html :: portfolio"></div>
+<div th:fragment="portfolio"></div>
 
 <div th:insert="question.html :: question"></div>
 <div th:fragment="question"></div>

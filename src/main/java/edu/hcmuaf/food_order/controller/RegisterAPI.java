@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class RegisterAPI {
@@ -26,13 +29,22 @@ public class RegisterAPI {
     }
 
     @PostMapping("/register-user")
-    public String registerUser(Model model, @ModelAttribute("user") InfoUser user) {
+    public String registerUser(Model model, @Valid @RequestBody InfoUser infoUser) {
         System.out.println("run method");
-        System.out.println("user is: " + user.toString());
-        user.setPassword(UserUtil.encryptPassword(user.getPassword()));
-        System.out.println("encrypt password");
+        System.out.println("user is: " + infoUser.toString());
+        infoUser.setPassworduser(UserUtil.encryptPassword(infoUser.getPassworduser()));
+        System.out.println("encrypt password " + infoUser.getPassworduser());
+        System.out.println("after encrypt password: " + infoUser.toString());
 //        userService.insertInfoUser(user);
-        userRepository.save(user);
+        userRepository.save(infoUser);
+        System.out.println("insert user into database");
+        String msg = "Đăng kí thành công";
+        model.addAttribute("msg-success", msg);
+        return "login";
+    }
+
+    @GetMapping("/login")
+    public String getLogin(Model model) {
         model.addAttribute("infoUser", new InfoUser());
         return "login";
     }

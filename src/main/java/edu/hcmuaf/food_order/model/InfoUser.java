@@ -22,14 +22,14 @@ public class InfoUser {
     @NotEmpty(message = "{username.not.empty}")
     private String username;
     @Column(name = "passworduser", nullable = false)
-    @NotEmpty(message = "{password.not.empty}")
-    private String password;
-    @Column(name = "fulltname", nullable = false)
-    @NotEmpty(message = "{fulltname.not.empty}")
-    private String fulltname;
+    @NotEmpty(message = "{passworduser.not.empty}")
+    private String passworduser;
+    @Column(name = "fullname", nullable = false)
+    @NotEmpty(message = "{fullname.not.empty}")
+    private String fullname;
     @Column(name = "addressofuser", nullable = false)
     @NotEmpty(message = "{address.not.empty}")
-    private String address;
+    private String addressofuser;
     @Column(name = "email", nullable = false)
     @NotEmpty(message = "{email.not.valid}")
     private String email;
@@ -44,12 +44,13 @@ public class InfoUser {
     public String toString() {
         return "InfoUser{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fulltname='" + fulltname + '\'' +
-                ", address='" + address + '\'' +
+                ", passworduser='" + passworduser + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", addressofuser='" + addressofuser + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
                 '}';
     }
+
 }

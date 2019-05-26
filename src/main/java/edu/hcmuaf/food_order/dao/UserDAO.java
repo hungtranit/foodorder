@@ -18,9 +18,9 @@ public class UserDAO {
                 + "VALUES(:username, :passworduser, :fullname, :addressofuser, :email, :phone, :avatar)";
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("username", infoUser.getUsername())
-                .addValue("passworduser", infoUser.getPassword())
-                .addValue("fullname", infoUser.getFulltname())
-                .addValue("addressofuser", infoUser.getAddress())
+                .addValue("passworduser", infoUser.getPassworduser())
+                .addValue("fullname", infoUser.getFullname())
+                .addValue("addressofuser", infoUser.getAddressofuser())
                 .addValue("email", infoUser.getEmail())
                 .addValue("phone", infoUser.getPhone())
                 .addValue("avatar", infoUser.getAvatar());

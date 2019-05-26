@@ -31,16 +31,10 @@ public class UserAPI {
     @Autowired
     SendDataAPI sendDataAPI;
 
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("infoUser", new InfoUser());
-        return "login";
-    }
-
     @PostMapping("/login")
     public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
         String url;
-        if (userService.login(infoUser.getUsername(), infoUser.getPassword())) {
+        if (userService.login(infoUser.getUsername(), infoUser.getPassworduser())) {
             System.out.println("login success");
             infoUser = userRepository.getOne(infoUser.getUsername());
             sendDataAPI.setInfoUserSession(infoUser);

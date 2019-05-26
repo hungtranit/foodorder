@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -8,7 +8,6 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
-
     <!-- Title Page-->
     <title>Au Register Forms by Colorlib</title>
     <link rel="stylesheet"
@@ -27,7 +26,6 @@
     <link
             href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="/login/vendor/select2/select2.min.css" rel="stylesheet"
           media="all">
@@ -49,26 +47,26 @@
                         class="glyphicon glyphicon-chevron-left"></span>Trở về trang chủ</a><br>
                 <br>
                 <h2 class="title">Đăng Kí Tài Khoản</h2>
-                <form th:action="@{/register-user}" th:object="${user}" th:method="post">
+                <form id="register-form">
                     <div class="input-group">
                         <span id="msg-username"></span>
                         <input class="input--style-3" type="text" id="username" required
-                               placeholder="Nhập tên tài khoản" th:field="*{username}">
+                               placeholder="Nhập tên tài khoản">
                     </div>
                     <div class="input-group">
                         <span id="msg-email"></span>
                         <input class="input--style-3" type="email" id="email" required
-                               placeholder="Nhập email người dùng" th:field="*{email}">
+                               placeholder="Nhập email người dùng">
                     </div>
                     <div class="input-group">
                         <span id="msg-full-name"></span>
                         <input class="input--style-3" type="text" id="full-name" required
-                               placeholder="Tên đầy đủ" th:field="*{fulltname}">
+                               placeholder="Tên đầy đủ">
                     </div>
                     <div class="input-group">
                         <span id="msg-password"></span>
                         <input class="input--style-3" type="password" id="password" required
-                               placeholder="Mật khẩu" th:field="*{password}">
+                               placeholder="Mật khẩu">
                     </div>
                     <div class="input-group">
                         <span id="msg-re-password"></span>
@@ -78,16 +76,14 @@
                     <div class="input-group">
                         <span id="msg-address"></span>
                         <input class="input--style-3" type="text" id="address" required
-                               placeholder="Địa chỉ người dùng" th:field="*{address}">
+                               placeholder="Địa chỉ người dùng">
                     </div>
                     <div class="input-group">
                         <span id="msg-phone"></span>
-                        <input class="input--style-3" type="tel" id="phone" placeholder="Số điện thoại"
-                               th:field="*{phone}" required>
+                        <input class="input--style-3" type="tel" id="phone" placeholder="Số điện thoại" required>
                     </div>
                     <span id="msg-avatar"></span>
-                    <input class="input--style-3" type="file" id="avatar" required placeholder="Chọn hình ảnh đại diện"
-                           th:field="*{avatar}">
+                    <input class="input--style-3" type="file" id="avatar" required placeholder="Chọn hình ảnh đại diện">
                     <div class="p-t-10" align="center">
                         <button class="btn btn--pill btn--green" type="submit" id="btn">Đăng kí</button>
                     </div>
@@ -116,5 +112,4 @@
 <script src="/login/js/global.js"></script>
 <script type="text/javascript" src="/forum/register.js"></script>
 </body>
-<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
