@@ -34,18 +34,18 @@ public class UserAPI {
     @PostMapping("/login")
     public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
         String url;
-        if (userService.login(infoUser.getUsername(), infoUser.getPassworduser())) {
+        if (userRepository.existsByUsername(infoUser.getUsername()) == false || userService.login(infoUser.getUsername(), infoUser.getPassworduser()) == false) {
+            System.out.println("login fail");
+            String massage = "Tài khoản hoặc khẩu không đúng";
+            model.addAttribute("errorLogin", massage);
+            url = "login";
+        } else {
             System.out.println("login success");
             infoUser = userRepository.getOne(infoUser.getUsername());
             sendDataAPI.setInfoUserSession(infoUser);
             sendDataAPI.getSession().setAttribute("infoUser", infoUser);
             getPageHome(model);
             url = "index";
-        } else {
-            System.out.println("login fail");
-            String massage = "Tài khoản hoặc khẩu không đúng";
-            model.addAttribute("errorLogin", massage);
-            url = "login";
         }
         return url;
     }
