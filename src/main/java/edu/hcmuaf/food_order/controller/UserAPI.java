@@ -31,16 +31,10 @@ public class UserAPI {
     @Autowired
     SendDataAPI sendDataAPI;
 
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("infoUser", new InfoUser());
-        return "login";
-    }
-
     @PostMapping("/login")
     public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
         String url;
-        if (userService.login(infoUser.getUsername(), infoUser.getPassword())) {
+        if (userService.login(infoUser.getUsername(), infoUser.getPassworduser())) {
             System.out.println("login success");
             infoUser = userRepository.getOne(infoUser.getUsername());
             sendDataAPI.setInfoUserSession(infoUser);
@@ -60,6 +54,7 @@ public class UserAPI {
     public String getPageHome(Model model) {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
+        System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
@@ -98,5 +93,18 @@ public class UserAPI {
         model.addAttribute("typequestion", questionService.findDistinctType());
         return "index";
     }
+
+    @RequestMapping(value = "/check-email", method = RequestMethod.POST)
+    public int checkEmail(@RequestParam(value = "email") String email) {
+        int message;
+        System.out.println("check email: ............");
+        if (userRepository.existsByEmail(email)) {
+            message = 1;
+        } else {
+            message = 0;
+        }
+        return message;
+    }
+
 
 }

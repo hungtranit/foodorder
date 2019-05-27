@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Properties;
 import java.util.Random;
 
 public class UserUtil {

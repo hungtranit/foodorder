@@ -2,16 +2,20 @@ package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.Comment;
 import edu.hcmuaf.food_order.model.Question;
+import edu.hcmuaf.food_order.model.Rep;
 import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.RepRepository;
 import edu.hcmuaf.food_order.service.CommentService;
 import edu.hcmuaf.food_order.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class ForumAPI {
@@ -53,19 +57,20 @@ public class ForumAPI {
         return mav;
     }
 
-//    @PostMapping("/add-comment")
-//    public ResponseEntity<?> addComment(Model model, Comment comment) {
-//        commentService.insertComment(comment);
-//        comment = commentRepository.getOne(commentRepository.getMaxId());
-//        return ResponseEntity.ok(comment);
-//    }
-
-    @PostMapping("/add-comment")
-    public String addComment(Model model, Comment comment) {
+    @RequestMapping(value = "/add-comment", method = RequestMethod.POST)
+    public ResponseEntity<?> addComment(@Valid @RequestBody Comment comment) {
+        comment = new Comment(idQuestion, comment.getContent(), sendDataAPI.getInfoUserSession().getUsername());
         commentService.insertComment(comment);
-        sendTypeQuestion();
-        sendDetailQuestion(model, idQuestion, url);
-        return url;
+        comment = commentRepository.getOne(commentRepository.getMaxId());
+        return ResponseEntity.ok(comment);
+    }
+
+    @RequestMapping(value = "/rep", method = RequestMethod.POST)
+    public ResponseEntity<?> addRep(@Valid @RequestBody Rep rep) {
+        rep = new Rep(rep.getContent(), rep.getCmtid(), sendDataAPI.getInfoUserSession().getUsername());
+        repRepository.save(rep);
+        rep = repRepository.getOne(repRepository.getMaxId());
+        return ResponseEntity.ok(rep);
     }
 
     private void sendDetailQuestion(Model model, int questionID, String url) {
@@ -79,11 +84,6 @@ public class ForumAPI {
         sendTypeQuestion();
         model.addAttribute("checkUser", sendDataAPI.getInfoUserSession());
         model.addAttribute("comment", new Comment());
-    }
-
-    @GetMapping("/post-product")
-    public String getPostProduct() {
-        return "/post-product";
     }
 
 }

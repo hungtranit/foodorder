@@ -36,10 +36,10 @@
                                 class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1"
                                 id="navbar-example">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a class="page-scroll" href="../index#shop">Shop</a>
+                                <li class="active"><a class="page-scroll" href="../index#team">Dịch Vụ Cơm</a>
                                 </li>
                                 <li><a class="page-scroll" href="../index#forum">Diễn Đàn</a></li>
-                                <li><a class="page-scroll" href="../index#services">Bài Đăng</a></li>
+                                <li><a class="page-scroll" href="../index#portfolio">Bài Đăng</a></li>
                                 <li><a class="page-scroll" href="../post-product">Đăng bài</a></li>
                                 <li class="dropdown" th:if="${infoUser.getUsername() == null}">
                                     <a href="login.html"
@@ -53,6 +53,9 @@
                                         <li><a href="../forgot-password">Quên Mật Khẩu</a></li>
                                     </ul>
                                 </li>
+                                <li class="dropdown" th:if="${infoUser.username != null}">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                       th:text="'Chào, '+${infoUser.username}"><span class="caret"></span></a>
                                 <li class="dropdown" th:if="${infoUser.username != null}">
                                     <a href="#"
                                        class="dropdown-toggle"

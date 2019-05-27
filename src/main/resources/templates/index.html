@@ -37,166 +37,17 @@
       ======================================================= -->
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
+<div id="preloader"></div>
 <div th:insert="header.html :: header"></div>
 <div th:fragment="header"></div>
 <div th:insert="slider.html :: slider"></div>
 <div th:fragment="slider"></div>
-<div id="preloader"></div>
 
-<!-- Start team Area -->
-<div id="shop" class="our-team-area area-padding-1">
-    <div class="container" style="background: #ffffff;padding-bottom: 30px;">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="section-headline text-center">
-                    <h2>.................</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="team-top">
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                    <div class="single-team-member">
-                        <div class="single-awesome-project">
-                            <div class="awesome-img">
-                                <a href="#"><img th:src="@{./home/img/portfolio/1.jpg}" alt=""/></a>
-                                <div class="add-actions text-center">
-                                    <div class="project-dec">
-                                        <a class="venobox" data-gall="myGallery"
-                                           th:href="@{./home/img/portfolio/1.jpg}">
-                                            <div><h4 style="padding-bottom: 10px">Business City</h4></div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-social-icon text-center">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Team Area -->
+<div th:insert="services.html :: team"></div>
+<div th:fragment="team"></div>
 
-<div id="services" class="portfolio-area area-padding-1 fix">
-    <div class="container" style="background: #ffffff">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="section-headline text-center">
-                    <h2>...........</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Start Portfolio -page -->
-            <div class="awesome-project-1 fix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="awesome-menu ">
-                        <ul class="project-menu">
-                            <li><a href="#" class="active" data-filter="*">All</a></li>
-                            <li><a href="#" data-filter=".development">Development</a>
-                            </li>
-                            <li><a href="#" data-filter=".design">Design</a></li>
-                            <li><a href="#" data-filter=".photo">Photoshop</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="awesome-project-content">
-                <!-- single-awesome-project start -->
-                <!-- <div class="col-md-4 col-sm-4 col-xs-12 design development"> -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development">
-                    <div class="single-awesome-project-post">
-                        <div class="awesome-img">
-                            <a href="#"><img th:src="@{./home/img/portfolio/1.jpg}" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery"
-                                       th:href="@{./home/img/portfolio/1.jpg}">
-                                        <h4>Business City</h4> <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- <div class="col-md-4 col-sm-4 col-xs-12 design development"> -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development">
-                    <div class="single-awesome-project-post">
-                        <div class="awesome-img">
-                            <a href="#"><img th:src="@{./home/img/portfolio/1.jpg}" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery"
-                                       th:href="@{./home/img/portfolio/1.jpg}">
-                                        <h4>Business City</h4> <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- <div class="col-md-4 col-sm-4 col-xs-12 design development"> -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development">
-                    <div class="single-awesome-project-post">
-                        <div class="awesome-img">
-                            <a href="#"><img th:src="@{./home/img/portfolio/1.jpg}" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery"
-                                       th:href="@{./home/img/portfolio/1.jpg}">
-                                        <h4>Business City</h4> <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- <div class="col-md-4 col-sm-4 col-xs-12 design development"> -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development">
-                    <div class="single-awesome-project-post">
-                        <div class="awesome-img">
-                            <a href="#"><img th:src="@{./home/img/portfolio/1.jpg}" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery"
-                                       th:href="@{./home/img/portfolio/1.jpg}">
-                                        <h4>Business City</h4> <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- awesome-portfolio end -->
+<div th:insert="products.html :: portfolio"></div>
+<div th:fragment="portfolio"></div>
 
 <div th:insert="question.html :: question"></div>
 <div th:fragment="question"></div>

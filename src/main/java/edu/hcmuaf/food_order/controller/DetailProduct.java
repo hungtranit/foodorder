@@ -11,11 +11,18 @@ public class DetailProduct {
     @Autowired
     SendDataAPI sendDataAPI;
 
-    @GetMapping("/product-forum")
+    @GetMapping("/product-forum/{product-id}")
     public String redirectProductForum(Model model) {
-        model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         return "product-forum";
+    }
+
+    @GetMapping("/post-product")
+    public String getPostProduct() {
+//        if (sendDataAPI.getInfoUserSession().getUsername() == null) {
+//            return "login";
+//        }
+        return "post-product";
     }
 
 }
