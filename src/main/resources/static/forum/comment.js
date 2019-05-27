@@ -4,6 +4,7 @@ $(document).ready(function () {
         comment();
     });
 });
+
 function comment() {
     var comment = {}
     comment["content"] = $("#message-box").val();

@@ -130,11 +130,12 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (result) {
                 console.log("result :" + result);
-                window.location.href = "/login";
+                window.location.href = "/" + result;
+                $('#register-success').text('Đăng kí tài khoản thành công!!!');
             },
             error: function (e) {
-                console.log(e);
-                window.location.href = "/login";
+                console.log("this error: " + e);
+                // window.location.href = "/login";
             }
         });
     };

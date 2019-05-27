@@ -54,10 +54,9 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown" th:if="${infoUser.username != null}">
-                                    <a href="#"
-                                       class="dropdown-toggle"
-                                       data-toggle="dropdown">Chào,
-                                        <span class="caret" th:text="${infoUser.username}"></span></a>
+                                    <a href="#" class="dropdown-toggle"
+                                       data-toggle="dropdown" th:text="'Chào, '+${infoUser.username}">
+                                        <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href=#>Thông tin tài khoản</a></li>
                                         <li><a th:href="@{/logout}">Thoát</a></li>
