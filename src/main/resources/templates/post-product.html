@@ -34,7 +34,7 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <div class="rs-select2 js-select-simple select--no-search">
-                                    <select name="gender">
+                                    <select name="gender" id="type-product">
                                         <option disabled="disabled" selected="selected">LOẠI BÁNH</option>
                                         <option>Male</option>
                                         <option>Female</option>
@@ -46,30 +46,30 @@
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Tên Bánh"
+                                <input class="input--style-1" type="text" placeholder="Tên sản phẩm" id="product-name"
                                        name="res_code">
                             </div>
                         </div>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Địa chỉ" name="name">
+                        <input class="input--style-1" type="text" id="address" placeholder="Địa chỉ" name="name">
                     </div>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Số điện thoại"
+                                <input class="input--style-1" id="phone" type="text" placeholder="Số điện thoại"
                                        name="res_code">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Giá"
+                                <input class="input--style-1" id="price" type="text" placeholder="Giá"
                                        name="res_code">
                             </div>
                         </div>
                     </div>
-                    <textarea id="story" name="story" style="width: 100%" rows="5"></textarea>
-                    <input type="file">
+                    <textarea id="decription" name="story" style="width: 100%" rows="5"></textarea>
+                    <input type="file" id="img">
                     <img id="myImg" src="#"/>
                     <div class="p-t-20">
                         <button class="btn btn--radius btn--green" type="submit">Submit</button>
@@ -102,6 +102,6 @@
         $('#myImg').attr('src', e.target.result);
     };
 </script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<script type="text/javascript" src="/forum/post-product.js"></script>
+</body>
 </html>
-<!-- end document-->
