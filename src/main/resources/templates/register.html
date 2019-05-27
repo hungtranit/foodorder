@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -8,8 +8,9 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
+
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script
@@ -26,6 +27,7 @@
     <link
             href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
+
     <!-- Vendor CSS-->
     <link href="/login/vendor/select2/select2.min.css" rel="stylesheet"
           media="all">
@@ -36,49 +38,68 @@
     <link href="/login/css/main.css" rel="stylesheet" media="all">
 </head>
 <body>
-<div class="page-wrapper bg-gra-01 p-t-20 p-b-40 font-poppins"
+<div class="page-wrapper bg-gra-01 p-t-80 p-b-40 font-poppins"
      style="padding-bottom: 20px;">
     <div class="wrapper wrapper--w780">
         <div class="card card-3">
             <div class="card-heading"></div>
             <div class="card-body">
                 <a id="sso_login_link_forget_password" href="index" class="sec"
-                   style="color: white;"><span
-                        class="glyphicon glyphicon-chevron-left"></span>Trở về trang chủ</a><br>
+                   style="color: white;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>Trở về trang chủ</a><br>
                 <br>
                 <h2 class="title">Đăng Kí Tài Khoản</h2>
+                <form th:action="@{/register-user}" th:object="${user}" th:method="post">
+                    <div class="input-group">
+                        <input class="input--style-3" type="text"
+                               placeholder="Nhập tên tài khoản" th:field="*{username}" style="width: 260px">
+                    </div>
                 <form id="register-form">
                     <div class="input-group">
+                        <input class="input--style-3" type="email"
+                               placeholder="Nhập email người dùng" th:field="*{email}" style="width: 260px">
                         <span id="msg-username"></span>
                         <input class="input--style-3" type="text" id="username" required
                                placeholder="Nhập tên tài khoản">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="text"
+                               placeholder="First name" th:field="*{firstname}" style="width: 260px">
                         <span id="msg-email"></span>
                         <input class="input--style-3" type="email" id="email" required
                                placeholder="Nhập email người dùng">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="text"
+                               placeholder="Last Name" th:field="*{lastname}" style="width: 260px">
                         <span id="msg-full-name"></span>
                         <input class="input--style-3" type="text" id="full-name" required
                                placeholder="Tên đầy đủ">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="password"
+                               placeholder="Mật khẩu" th:field="*{password}" style="width: 260px">
                         <span id="msg-password"></span>
                         <input class="input--style-3" type="password" id="password" required
                                placeholder="Mật khẩu">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="password"
+                               placeholder="Nhập lại mật khẩu" name="repassword" style="width: 260px">
                         <span id="msg-re-password"></span>
                         <input class="input--style-3" type="password" id="re-password" required
                                placeholder="Nhập lại mật khẩu" name="repassword">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="text"
+                               placeholder="Địa chỉ người dùng" th:field="*{address}" style="width: 260px">
                         <span id="msg-address"></span>
                         <input class="input--style-3" type="text" id="address" required
                                placeholder="Địa chỉ người dùng">
                     </div>
                     <div class="input-group">
+                        <input class="input--style-3" type="text"
+                               placeholder="Số điện thoại" th:field="*{phone}" style="width: 260px">
                         <span id="msg-phone"></span>
                         <input class="input--style-3" type="tel" id="phone" placeholder="Số điện thoại" required>
                     </div>
