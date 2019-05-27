@@ -1,4 +1,4 @@
-$(document).submit(function (e) {
+$('#post-product').submit(function (e) {
     e.preventDefault();
     postProduct();
 });
