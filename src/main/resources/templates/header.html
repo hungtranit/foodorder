@@ -41,21 +41,23 @@
                                 <li><a class="page-scroll" href="../index#forum">Diễn Đàn</a></li>
                                 <li><a class="page-scroll" href="../index#services">Bài Đăng</a></li>
                                 <li><a class="page-scroll" href="../post-product">Đăng bài</a></li>
-                                <li class="dropdown" th:if="${infoUser.getUsername() == null}"><a href="login.html"
-                                                                                                  class="dropdown-toggle"
-                                                                                                  data-toggle="dropdown"><span
-                                        class="caret">Đăng Nhập</span></a>
+                                <li class="dropdown" th:if="${infoUser.getUsername() == null}">
+                                    <a href="login.html"
+                                    class="dropdown-toggle"
+                                    data-toggle="dropdown">
+                                    Đăng nhập
+                                    <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="../login">Đăng Nhập</a></li>
                                         <li><a href="../register">Đăng Kí</a></li>
                                         <li><a href="../forgot-password">Quên Mật Khẩu</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" th:if="${infoUser.username != null}"><a href="#"
-                                                                                             class="dropdown-toggle"
-                                                                                             data-toggle="dropdown">Chào,
-                                    <span
-                                            class="caret" th:text="${infoUser.username}"></span></a>
+                                <li class="dropdown" th:if="${infoUser.username != null}">
+                                    <a href="#"
+                                       class="dropdown-toggle"
+                                       data-toggle="dropdown">Chào,
+                                    <span class="caret" th:text="${infoUser.username}"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href=#>Thông tin tài khoản</a></li>
                                         <li><a th:href="@{/logout}">Thoát</a></li>
