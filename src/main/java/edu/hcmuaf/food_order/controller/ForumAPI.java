@@ -86,9 +86,4 @@ public class ForumAPI {
         model.addAttribute("comment", new Comment());
     }
 
-    @GetMapping("/post-product")
-    public String getPostProduct() {
-        return "/post-product";
-    }
-
 }

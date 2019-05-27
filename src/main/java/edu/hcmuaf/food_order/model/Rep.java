@@ -1,12 +1,14 @@
 package edu.hcmuaf.food_order.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "REPCMT")
 public class Rep {
 

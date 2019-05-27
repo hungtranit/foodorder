@@ -17,4 +17,12 @@ public class DetailProduct {
         return "product-forum";
     }
 
+    @GetMapping("/post-product")
+    public String getPostProduct() {
+//        if (sendDataAPI.getInfoUserSession().getUsername() == null) {
+//            return "login";
+//        }
+        return "post-product";
+    }
+
 }

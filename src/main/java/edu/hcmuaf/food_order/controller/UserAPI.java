@@ -54,6 +54,7 @@ public class UserAPI {
     public String getPageHome(Model model) {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
+        System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
@@ -104,7 +105,6 @@ public class UserAPI {
         }
         return message;
     }
-
 
 
 }

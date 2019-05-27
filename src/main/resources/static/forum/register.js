@@ -133,7 +133,7 @@ $(document).ready(function () {
                 window.location.href = "/login";
             },
             error: function (e) {
-                console.log("error :" + e);
+                console.log(e);
                 window.location.href = "/login";
             }
         });

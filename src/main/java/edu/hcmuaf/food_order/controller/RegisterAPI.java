@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -38,8 +37,6 @@ public class RegisterAPI {
 //        userService.insertInfoUser(user);
         userRepository.save(infoUser);
         System.out.println("insert user into database");
-        String msg = "Đăng kí thành công";
-        model.addAttribute("msg-success", msg);
         return "login";
     }
 
