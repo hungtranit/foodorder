@@ -6,12 +6,14 @@ import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserAPI {
@@ -94,8 +96,8 @@ public class UserAPI {
         return "index";
     }
 
-    @RequestMapping(value = "/check-email", method = RequestMethod.POST)
-    public int checkEmail(@RequestParam(value = "email") String email) {
+    @RequestMapping(value = "/check-email", method = RequestMethod.GET)
+    public ResponseEntity<?> checkEmail(@Valid @RequestParam(value = "email") String email) {
         int message;
         System.out.println("check email: ............");
         if (userRepository.existsByEmail(email)) {
@@ -103,7 +105,7 @@ public class UserAPI {
         } else {
             message = 0;
         }
-        return message;
+        return ResponseEntity.ok(message);
     }
 
 
