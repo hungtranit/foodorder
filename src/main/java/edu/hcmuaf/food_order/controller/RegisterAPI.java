@@ -5,6 +5,7 @@ import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.UserService;
 import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class RegisterAPI {
     }
 
     @PostMapping("/register-user")
-    public String registerUser(Model model, @Valid @RequestBody InfoUser infoUser) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody InfoUser infoUser) {
         System.out.println("run method");
         System.out.println("user is: " + infoUser.toString());
         infoUser.setPassworduser(UserUtil.encryptPassword(infoUser.getPassworduser()));
@@ -37,7 +38,7 @@ public class RegisterAPI {
 //        userService.insertInfoUser(user);
         userRepository.save(infoUser);
         System.out.println("insert user into database");
-        return "login";
+        return ResponseEntity.ok("login");
     }
 
     @GetMapping("/login")

@@ -49,6 +49,7 @@
                 <br>
                 <h2 class="title">Đăng Nhập</h2>
                 <span th:text="${errorLogin}" style="font-size: 13px; color: #ffa10b;"></span>
+                <span id="register-success" style="font-size: 15px;color: #ffa10b;"></span>
                 <form th:action="@{/login}" th:object="${infoUser}" th:method="post">
                     <div class="input-group">
                         <input class="input--style-3" type="text" placeholder="Tài khoản" th:field="*{username}"/>

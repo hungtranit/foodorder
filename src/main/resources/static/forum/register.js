@@ -5,13 +5,33 @@ $(document).ready(function () {
     $('#email').keyup(function () {
         var formatEmail = $('#email').val();
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (!filter.test(formatEmail)) {
+        if (filter.test(formatEmail)) {
+            $('#email').on('change', function() {
+                $.ajax({
+                    url: "/check-email",
+                    data: {
+                        'email' : $('#email').val()
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if(data == 1) {
+                            $('#msg-email').text("Email đã tồn tại");
+                            btnSubmit.disabled = true;
+                        }
+                        else {
+                            $('#msg-email').text("Bạn có thể sử dụng email này");
+                            btnSubmit.disabled = false;
+                        }
+                    },
+                    error: function(e){
+                        console.log("check mail fail: " + e);
+                    }
+                });
+            });
+        } else {
             $('#msg-email').text("* Email không hợp lệ. Thử lại");
             formatEmail.focus;
             btnSubmit.disabled = true;
-        } else {
-            $('#msg-email').text("");
-            btnSubmit.disabled = false;
         }
     });
 
@@ -29,46 +49,6 @@ $(document).ready(function () {
             btnSubmit.disabled = false;
         }
     });
-
-    // var x_timer;
-    // kiem tra dinh dang email
-    // $('#email').keyup(function () {
-    // var formatEmail = $('#email').val();
-    // var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    // if (!filter.test(formatEmail)) {
-    //     $('#msg-email').text("Email không hợp lệ. Thử lại");
-    //     formatEmail.focus;
-    //     btnSubmit.disabled = true;
-    // } else {
-    // clearTimeout(x_timer);
-    // var email = $('#email').val();
-    // x_timer = setTimeout(function () {
-    //     check_email_ajax(email);
-    //     email.focus;
-    // }, 2000);
-    // }
-    // });
-
-    // function check_email_ajax(param) {
-    //     var email = param;
-    //     $.ajax({
-    //         type: "POST",
-    //         contentType: "application/json",
-    //         dataType: 'json',
-    //         url: "/check-email",
-    //         cache: false,
-    //         data: JSON.stringify(email),
-    //         success: function (response) {
-    //             if (response == 1) {
-    //                 $('#msg-email').text("Email đã tồn tại");
-    //                 btnSubmit.disabled = true;
-    //             } else {
-    //                 $('#msg-email').text("Bạn có thể sử dụng email này");
-    //                 btnSubmit.disabled = false;
-    //             }
-    //         }
-    //     });
-    // }
 
     // xac nhan mat khau
     $("#re-password").keyup(function () {
@@ -130,11 +110,12 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (result) {
                 console.log("result :" + result);
-                window.location.href = "/login";
+                window.location.href = "/" + result;
+                $('#register-success').text('Đăng kí tài khoản thành công!!!');
             },
             error: function (e) {
-                console.log(e);
-                window.location.href = "/login";
+                console.log("this error: " + e);
+                // window.location.href = "/login";
             }
         });
     };
