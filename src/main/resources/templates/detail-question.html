@@ -117,25 +117,8 @@
                                                                      th:text="${cmtList.getUserCMT()}"></a></b><span
                                                                 class="post-time"
                                                                 th:text="${cmtList.getTimecmt()}"></span>
-                                                            <a><span class="add_field_button">Reply</span></a>
 														</span>
                                                     <p th:text="${cmtList.getContent()}"></p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="threaded-comments" th:each="repList : ${listRep}"
-                                            th:if="${repList.getCmtid() == cmtList.getCmtID()}">
-                                            <div class="comments-details">
-                                                <div class="comments-list-img">
-                                                    <img src="../home/img/blog/b02.jpg" alt="post-author">
-                                                </div>
-                                                <div class="comments-content-wrap">
-														<span> <b><a href="#"
-                                                                     th:text="${repList.getUsername()}"></a></b><span
-                                                                class="post-time"
-                                                                th:text="${repList.getTimerep()}"></span>
-														</span>
-                                                    <p th:text="${repList.getContent()}"></p>
                                                 </div>
                                             </div>
                                         </li>

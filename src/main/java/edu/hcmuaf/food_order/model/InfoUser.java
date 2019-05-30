@@ -19,25 +19,25 @@ public class InfoUser {
 
     @Id
     @Column(name = "username", nullable = false)
-    @NotEmpty(message = "{username.not.empty}")
+//    @NotEmpty(message = "{username.not.empty}")
     private String username;
     @Column(name = "passworduser", nullable = false)
-    @NotEmpty(message = "{passworduser.not.empty}")
+//    @NotEmpty(message = "{passworduser.not.empty}")
     private String passworduser;
     @Column(name = "fullname", nullable = false)
-    @NotEmpty(message = "{fullname.not.empty}")
+//    @NotEmpty(message = "{fullname.not.empty}")
     private String fullname;
     @Column(name = "addressofuser", nullable = false)
-    @NotEmpty(message = "{address.not.empty}")
+//    @NotEmpty(message = "{address.not.empty}")
     private String addressofuser;
     @Column(name = "email", nullable = false)
-    @NotEmpty(message = "{email.not.valid}")
+//    @NotEmpty(message = "{email.not.valid}")
     private String email;
     @Column(name = "phone", nullable = false)
-    @NotEmpty(message = "{phone.not.empty}")
+//    @NotEmpty(message = "{phone.not.empty}")
     private String phone;
     @Column(name = "avatar", nullable = false)
-    @NotEmpty(message = "{avatar.not.empty}")
+//    @NotEmpty(message = "{avatar.not.empty}")
     private String avatar;
 
     @Override

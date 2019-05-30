@@ -48,4 +48,11 @@ public class DetailProductAPI {
         return ResponseEntity.ok("post-product");
     }
 
+    @GetMapping("/detail-product")
+    public String getDetailProduct(Model model) {
+        model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
+        sendDataAPI.sendInfoUser();
+        return "detail-product";
+    }
+
 }
