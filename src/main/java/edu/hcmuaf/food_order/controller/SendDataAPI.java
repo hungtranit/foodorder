@@ -35,7 +35,7 @@ public class SendDataAPI {
     public String getPage(Model model, String url) {
         model.addAttribute("infoUser", infoUserSession);
         sendInfoUser();
-        return "url";
+        return url;
     }
 
     public SendDataAPI() {
