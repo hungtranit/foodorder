@@ -3,7 +3,6 @@ package edu.hcmuaf.food_order.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,34 +19,38 @@ public class InfoUser {
 
     @Id
     @Column(name = "username", nullable = false)
+//    @NotEmpty(message = "{username.not.empty}")
     private String username;
     @Column(name = "passworduser", nullable = false)
-    @NotEmpty(message = "Enter password.")
-    private String password;
-    @Column(name = "firstname", nullable = false)
-    private String firstname;
-    @Column(name = "lastname", nullable = false)
-    private String lastname;
+//    @NotEmpty(message = "{passworduser.not.empty}")
+    private String passworduser;
+    @Column(name = "fullname", nullable = false)
+//    @NotEmpty(message = "{fullname.not.empty}")
+    private String fullname;
     @Column(name = "addressofuser", nullable = false)
-    private String address;
+//    @NotEmpty(message = "{address.not.empty}")
+    private String addressofuser;
     @Column(name = "email", nullable = false)
+//    @NotEmpty(message = "{email.not.valid}")
     private String email;
     @Column(name = "phone", nullable = false)
+//    @NotEmpty(message = "{phone.not.empty}")
     private String phone;
     @Column(name = "avatar", nullable = false)
+//    @NotEmpty(message = "{avatar.not.empty}")
     private String avatar;
 
     @Override
     public String toString() {
         return "InfoUser{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstname + '\'' +
-                ", lastName='" + lastname + '\'' +
-                ", address='" + address + '\'' +
-                ", mail='" + email + '\'' +
+                ", passworduser='" + passworduser + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", addressofuser='" + addressofuser + '\'' +
+                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
                 '}';
     }
+
 }

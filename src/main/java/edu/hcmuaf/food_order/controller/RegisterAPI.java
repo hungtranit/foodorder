@@ -5,9 +5,12 @@ import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.UserService;
 import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class RegisterAPI {
@@ -26,13 +29,20 @@ public class RegisterAPI {
     }
 
     @PostMapping("/register-user")
-    public String registerUser(Model model, @ModelAttribute("user") InfoUser user) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody InfoUser infoUser) {
         System.out.println("run method");
-        System.out.println("user is: " + user.toString());
-        user.setPassword(UserUtil.encryptPassword(user.getPassword()));
-        System.out.println("encrypt password");
+        System.out.println("user is: " + infoUser.toString());
+        infoUser.setPassworduser(UserUtil.encryptPassword(infoUser.getPassworduser()));
+        System.out.println("encrypt password " + infoUser.getPassworduser());
+        System.out.println("after encrypt password: " + infoUser.toString());
 //        userService.insertInfoUser(user);
-        userRepository.save(user);
+        userRepository.save(infoUser);
+        System.out.println("insert user into database");
+        return ResponseEntity.ok("login");
+    }
+
+    @GetMapping("/login")
+    public String getLogin(Model model) {
         model.addAttribute("infoUser", new InfoUser());
         return "login";
     }

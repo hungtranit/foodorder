@@ -6,12 +6,14 @@ import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserAPI {
@@ -31,27 +33,21 @@ public class UserAPI {
     @Autowired
     SendDataAPI sendDataAPI;
 
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("infoUser", new InfoUser());
-        return "login";
-    }
-
     @PostMapping("/login")
     public String postLogin(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
         String url;
-        if (userService.login(infoUser.getUsername(), infoUser.getPassword())) {
+        if (userRepository.existsByUsername(infoUser.getUsername()) == false || userService.login(infoUser.getUsername(), infoUser.getPassworduser()) == false) {
+            System.out.println("login fail");
+            String massage = "Tài khoản hoặc khẩu không đúng";
+            model.addAttribute("errorLogin", massage);
+            url = "login";
+        } else {
             System.out.println("login success");
             infoUser = userRepository.getOne(infoUser.getUsername());
             sendDataAPI.setInfoUserSession(infoUser);
             sendDataAPI.getSession().setAttribute("infoUser", infoUser);
             getPageHome(model);
             url = "index";
-        } else {
-            System.out.println("login fail");
-            String massage = "Tài khoản hoặc khẩu không đúng";
-            model.addAttribute("errorLogin", massage);
-            url = "login";
         }
         return url;
     }
@@ -60,6 +56,7 @@ public class UserAPI {
     public String getPageHome(Model model) {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
+        System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
@@ -98,5 +95,18 @@ public class UserAPI {
         model.addAttribute("typequestion", questionService.findDistinctType());
         return "index";
     }
+
+    @RequestMapping(value = "/check-email", method = RequestMethod.GET)
+    public ResponseEntity<?> checkEmail(@Valid @RequestParam(value = "email") String email) {
+        int message;
+        System.out.println("check email: ............");
+        if (userRepository.existsByEmail(email)) {
+            message = 1;
+        } else {
+            message = 0;
+        }
+        return ResponseEntity.ok(message);
+    }
+
 
 }

@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script
@@ -38,58 +38,57 @@
     <link href="/login/css/main.css" rel="stylesheet" media="all">
 </head>
 <body>
-<div class="page-wrapper bg-gra-01 p-t-20 p-b-40 font-poppins"
+<div class="page-wrapper bg-gra-01 p-t-80 p-b-40 font-poppins"
      style="padding-bottom: 20px;">
     <div class="wrapper wrapper--w780">
         <div class="card card-3">
             <div class="card-heading"></div>
             <div class="card-body">
                 <a id="sso_login_link_forget_password" href="index" class="sec"
-                   style="color: white;"><span
-                        class="glyphicon glyphicon-chevron-left"></span>Trở về trang chủ</a><br>
+                   style="color: white;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>Trở về trang chủ</a><br>
                 <br>
                 <h2 class="title">Đăng Kí Tài Khoản</h2>
-                <form th:action="@{/register-user}" th:object="${user}" th:method="post">
+                <form id="register-form">
                     <div class="input-group">
-                        <input class="input--style-3" type="text"
-                               placeholder="Nhập tên tài khoản" th:field="*{username}">
+                        <span id="msg-username"></span>
+                        <input class="input--style-3" type="text" id="username"
+                               placeholder="Nhập tên tài khoản" required>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="email"
-                               placeholder="Nhập email người dùng" th:field="*{email}">
+                        <span id="msg-email"></span>
+                        <input class="input--style-3" type="email" id="email"
+                               placeholder="Nhập email người dùng" required>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text"
-                               placeholder="First name" th:field="*{firstname}">
+                        <span id="msg-full-name"></span>
+                        <input class="input--style-3" type="text" id="full-name" required
+                               placeholder="Tên đầy đủ">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text"
-                               placeholder="Last Name" th:field="*{lastname}">
+                        <span id="msg-password"></span>
+                        <input class="input--style-3" type="password" id="password" required
+                               placeholder="Mật khẩu">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="password"
-                               placeholder="Mật khẩu" th:field="*{password}">
-                    </div>
-                    <div class="input-group">
-                        <input class="input--style-3" type="password"
+                        <span id="msg-re-password"></span>
+                        <input class="input--style-3" type="password" id="re-password" required
                                placeholder="Nhập lại mật khẩu" name="repassword">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text"
-                               placeholder="Địa chỉ người dùng" th:field="*{address}">
+                        <span id="msg-address"></span>
+                        <input class="input--style-3" type="text" id="address" required
+                               placeholder="Địa chỉ người dùng">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text"
-                               placeholder="Số điện thoại" th:field="*{phone}">
+                        <span id="msg-phone"></span>
+                        <input class="input--style-3" type="tel" id="phone" placeholder="Số điện thoại" required>
                     </div>
-                    <div class="input-group">
-                        <input class="input--style-3" type="file"
-                               placeholder="Chọn hình ảnh đại diện" th:field="*{avatar}">
-                    </div>
+                    <span id="msg-avatar"></span>
+                    <input class="input--style-3" type="file" id="avatar" required
+                           placeholder="Chọn hình ảnh đại diện">
                     <div class="p-t-10" align="center">
-                        <button class="btn btn--pill btn--green" type="submit">Đăng
-                            kí
-                        </button>
+                        <button class="btn btn--pill btn--green" type="submit" id="btn">Đăng kí</button>
                     </div>
                     <br>
                     <div class="divider">
@@ -106,7 +105,6 @@
         </div>
     </div>
 </div>
-
 <!-- Jquery JS-->
 <script src="/login/vendor/jquery/jquery.min.js"></script>
 <!-- Vendor JS-->
@@ -115,6 +113,6 @@
 <script src="/login/vendor/datepicker/daterangepicker.js"></script>
 <!-- Main JS-->
 <script src="/login/js/global.js"></script>
+<script type="text/javascript" src="/forum/register.js"></script>
 </body>
-<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

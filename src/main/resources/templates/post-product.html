@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <!-- Required meta tags-->
@@ -21,21 +21,6 @@
     <link href="/post/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="/post/css/main.css" rel="stylesheet" media="all">
-    <script>
-        $(function () {
-            $(":file").change(function () {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = imageIsLoaded;
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-        });
-
-        function imageIsLoaded(e) {
-            $('#myImg').attr('src', e.target.result);
-        };
-    </script>
 </head>
 <body>
 <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
@@ -43,17 +28,16 @@
         <div class="card card-1">
             <div class="card-body">
                 <h2 class="title">ĐĂNG KÍ BÁN SẢN PHẨM</h2>
-                <form>
-                    <!--                    <form th:method="GET" th:action="" th:object="">-->
+                <span id="post-success" style="font-size: 15px;color: #ffa10b;"></span>
+                <form id="post-product">
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <div class="rs-select2 js-select-simple select--no-search">
-                                    <select name="gender">
-                                        <option disabled="disabled" selected="selected">LOẠI BÁNH</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Other</option>
+                                    <select name="gender" id="post-type-product">
+                                        <option disabled="disabled" selected="selected" required>LOẠI BÁNH</option>
+                                        <option>product1</option>
+                                        <option>product2</option>
                                     </select>
                                     <div class="select-dropdown"></div>
                                 </div>
@@ -61,37 +45,34 @@
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Tên Bánh"
-                                       name="res_code">
+                                <input class="input--style-1" type="text" placeholder="Tên sản phẩm" id="product-name"
+                                       name="res_code" required>
                             </div>
                         </div>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Địa chỉ" name="name">
+                        <input class="input--style-1" type="text" id="post-address" placeholder="Địa chỉ" required>
                     </div>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Số điện thoại"
-                                       name="res_code">
+                                <input class="input--style-1" id="post-phone" type="text" placeholder="Số điện thoại"
+                                       name="res_code" required>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <input class="input--style-1" type="text" placeholder="Giá"
-                                       name="res_code">
+                                <input class="input--style-1" id="post-price" type="text" placeholder="Giá"
+                                       name="res_code" required>
                             </div>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <textarea id="story" name="story" rows="5" cols="50"></textarea>
-                    </div>
-                    <div class="input-group">
-                        <input type="file">
-                        <img id="myImg" src="#" alt="your image"/>
-                    </div>
+                    <textarea id="post-description-product" name="story" style="width: 100%" rows="5"
+                              required></textarea>
+                    <input type="file" id="img">
+                    <img id="post-myImg" src="#" required=""/>
                     <div class="p-t-20">
-                        <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        <button class="btn-post-product btn--radius btn--green" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -106,6 +87,21 @@
 <script src="/post/vendor/datepicker/daterangepicker.js"></script>
 <!-- Main JS-->
 <script src="/post/js/global.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<script>
+    $(function () {
+        $(":file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#post-myImg').attr('src', e.target.result);
+    };
+</script>
+<script type="text/javascript" src="/forum/post-product.js"></script>
+</body>
 </html>
-<!-- end document-->

@@ -11,8 +11,19 @@ import java.util.Date;
 @Data
 @Table(name = "INFOPRODUCT")
 @NoArgsConstructor
-
 public class Product {
+
+    public Product(String typeproduct, String productname, String decriptionproduct, String addressproduct,
+                   String img, int price, String username, String phone) {
+        this.typeproduct = typeproduct;
+        this.productname = productname;
+        this.decriptionproduct = decriptionproduct;
+        this.addressproduct = addressproduct;
+        this.img = img;
+        this.price = price;
+        this.username = username;
+        this.phone = phone;
+    }
 
     @Id
     @Column(name = "postid", nullable = false)

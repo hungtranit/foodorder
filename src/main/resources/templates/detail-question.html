@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>eBusiness Bootstrap Template</title>
@@ -103,7 +101,7 @@
                         </article>
                         <div class="clear"></div>
                         <div class="single-post-comments">
-                            <div class="comments-area">
+                            <div class="comments-area" id="comments-area">
                                 <div class="comments-heading">
                                     <h3>6 comments</h3>
                                 </div>
@@ -119,51 +117,26 @@
                                                                      th:text="${cmtList.getUserCMT()}"></a></b><span
                                                                 class="post-time"
                                                                 th:text="${cmtList.getTimecmt()}"></span>
-                                                            <button class="add_field_button">Reply</button>
 														</span>
                                                     <p th:text="${cmtList.getContent()}"></p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="threaded-comments" th:each="repList : ${listRep}"
-                                            th:if="${repList.getCmtid() == cmtList.getCmtID()}">
-                                            <div class="comments-details">
-                                                <div class="comments-list-img">
-                                                    <img src="../home/img/blog/b02.jpg" alt="post-author">
-                                                </div>
-                                                <div class="comments-content-wrap">
-														<span> <b><a href="#"
-                                                                     th:text="${repList.getUsername()}"></a></b><span
-                                                                class="post-time"
-                                                                th:text="${repList.getTimerep()}"></span>
-														</span>
-                                                    <p th:text="${repList.getContent()}"></p>
-                                                </div>
-                                            </div>
-                                        </li>
                                     </ul>
-                                    <ul>
-                                        <li id="comments"></li>
+                                    <ul id="ul-comments">
+                                        <li id="comments">
+                                        </li>
                                     </ul>
                                     <div class="comment-respond">
                                         <h3 class="comment-reply-title" th:if="${checkUser.getUsername() != null}">Bình
                                             luận</h3>
                                         <h3 class="comment-reply-title" th:if="${checkUser.getUsername() == null}">Để có
-                                            thể
-                                            bình luận bạn cần phải <a href="../login">Đăng Nhập</a>!</h3>
-                                        <form th:if="${checkUser.getUsername() != null}" th:action="@{/add-comment}"
-                                              th:object="${comment}" id="post-comment-form" method="post">
+                                            thể bình luận bạn cần phải <a href="../login">Đăng Nhập</a>!</h3>
+                                        <form th:if="${checkUser.getUsername() != null}" id="post-comment-form">
                                             <div class="row">
                                                 <div
                                                         class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                                            <textarea id="message-box" cols="30" rows="3"
-                                                      th:field="*{content}"></textarea>
-                                                    <input id="id-question" th:type="hidden"
-                                                           th:value="${detailquestion.getQuestionid()}"
-                                                           th:attr="name='questionID'">
-                                                    <input id="username" th:type="hidden"
-                                                           th:value="${checkUser.getUsername()}"
-                                                           th:attr="name='userCMT'">
+                                                    <textarea id="message-box" cols="30" rows="3"></textarea>
                                                     <input id="post-comment" type="submit" value="Post Comment"/>
                                                 </div>
                                             </div>
@@ -182,83 +155,6 @@
 <!-- End Blog Area -->
 <div class="clearfix"></div>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-<!-- JavaScript Libraries -->
-<!--<script>-->
-<!--    jQuery(document).ready(function ($) {-->
-<!--        $("#post-comment").click(function (event) {-->
-<!--            var data = {}-->
-<!--            data["content"] = $("#message-box").val();-->
-<!--            data["id-question"] = $("#id-question").val();-->
-<!--            data["username"] = $("#username").val();-->
-<!--            $("#post-comment").prop("disabled", true);-->
-<!--            $.ajax({-->
-<!--                type: "POST",-->
-<!--                contentType: "application/json",-->
-<!--                url: "/add-comment",-->
-<!--                data: JSON.stringify(data),-->
-<!--                dataType: 'json',-->
-<!--                success: function (result) {-->
-<!--                    var json = "<h4>Ajax Response</h4><pre></pre>";-->
-<!--                    $("#comments").html(json);-->
-<!--                }-->
-<!--            });-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--        $("#post-comment-form").submit(function (event) {-->
-<!--            // Prevent the form from submitting via the browser.-->
-<!--            event.preventDefault();-->
-<!--            comment();-->
-<!--        });-->
-
-<!--        function comment() {-->
-<!--            var sendData = {-->
-<!--                "content": $("#message-box").val(),-->
-<!--                "idquestion": $("#idquestion").val(),-->
-<!--                "username": $("#username").val()-->
-<!--            }-->
-<!--            $("#post-comment").prop("disable", true);-->
-<!--            $.ajax({-->
-<!--                type: "POST",-->
-<!--                contentType: "application/json",-->
-<!--                dataType: 'json',-->
-<!--                url: "/add-comment",-->
-<!--                cache: false,-->
-<!--                data: JSON.stringify(sendData),-->
-<!--                success: function (response) {-->
-<!--                    var json = "<h4>Ajax Response</h4><pre></pre>";-->
-<!--                    $("#comments").html(json);-->
-<!--                    console.log("SUCCESS : ", response);-->
-<!--                    $("#post-comment").prop("disabled", false);-->
-<!--                    // var object = JSON.parse(response);-->
-<!--                    // if (response.status == "Done") {-->
-<!--                    //     $("#comments").html("<div class=\"comments-details\">" +-->
-<!--                    //         "<div class=\"comments-list-img\">" +-->
-<!--                    //         "<img src=\"../home/img/blog/b02.jpg\" alt=\"post-author\"></div>" +-->
-<!--                    //         "<div class=\"comments-content-wrap\">" +-->
-<!--                    //         "<span> <b><a href=\"#\"></a></b>" +-->
-<!--                    //         "<span class=\"post-time\"></span>" +-->
-<!--                    //         "<span> <b><a href=\"#\">" + object.data.getUserCMT() + "</a></b>" +-->
-<!--                    //         "<span class=\"post-time\">" + object.data.getTimecmt() + "</span>" +-->
-<!--                    //         "<button class=\"add_field_button\">Reply</button></span><p>" + object.data.content + "</p>" +-->
-<!--                    //         "</div></div>");-->
-<!--                    // } else {-->
-<!--                    //     console.log("error: ", response)-->
-<!--                    // }-->
-<!--                },-->
-<!--                error: function (e) {-->
-<!--                    var json = "<h4>Ajax Response</h4><pre>"-->
-<!--                        + e.responseText + "</pre>";-->
-<!--                    $('#comments').html(json);-->
-<!--                    console.log("ERROR : ", e);-->
-<!--                    $("#post-comment").prop("disabled", false);-->
-<!--                }-->
-<!--            });-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
 <script src="/home/lib/jquery/jquery.min.js"></script>
 <script src="/home/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/home/lib/owlcarousel/owl.carousel.min.js"></script>
@@ -274,5 +170,6 @@
 <!-- Contact Form JavaScript File -->
 <script src="/home/contactform/contactform.js"></script>
 <script src="/home/js/main.js"></script>
+<script type="text/javascript" src="/forum/comment.js"></script>
 </body>
 </html>

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
 <!-- Faq area start -->
-<div id="forum" class="faq-area area-padding-1" th:fragment="question">
+<div id="forum" class="forum-area area-padding-1" th:fragment="question">
     <div class="container" style="background: #ffffff">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -54,11 +52,11 @@
                                          th:if="${listQuestion.getTypeproduct() == typequesion.getTypeproduct()}"
                                          class="details-question">
                                         <div class="row">
-                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
                                                 <img>
                                                 <a>img</a>
                                             </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
                                                 <div class="entry-content">
                                                     <a th:href="@{'/detail-question/' + ${listQuestion.getQuestionid()}}"
                                                        th:text="${listQuestion.getContent()}"></a>
@@ -68,13 +66,13 @@
                                                         href="#" th:text="${listQuestion.getUsername()}"></a></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                <div class="entry-meta"><span
-                                                        th:text="${listQuestion.getTimeQuestion()}"><i
-                                                        class="fa fa-clock-o"></i></span>
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                <div class="entry-meta"><span>
+                                                    <i class="fa fa-calendar"
+                                                       th:text="' ' + ${listQuestion.getTimeQuestion()}"></i></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
                                                 <div class="entry-meta"><span><i class="fa fa-comments-o"></i> <a
                                                         href="#">6 comments</a></span>
                                                 </div>
