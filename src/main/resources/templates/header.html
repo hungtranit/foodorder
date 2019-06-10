@@ -58,6 +58,8 @@
                                        data-toggle="dropdown" th:text="'Chào, '+${infoUser.username}">
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../list-product" th:if="${infoUser.getRoles() == 1}">Quản Lí</a>
+                                        </li>
                                         <li><a href=#>Thông tin tài khoản</a></li>
                                         <li><a th:href="@{/logout}">Thoát</a></li>
                                     </ul>

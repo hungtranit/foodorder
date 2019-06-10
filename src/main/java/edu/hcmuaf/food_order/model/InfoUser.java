@@ -39,6 +39,8 @@ public class InfoUser {
     @Column(name = "avatar", nullable = false)
 //    @NotEmpty(message = "{avatar.not.empty}")
     private String avatar;
+    @Column(name = "roles", nullable = false)
+    private int roles;
 
     @Override
     public String toString() {
@@ -50,7 +52,7 @@ public class InfoUser {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", roles=" + roles +
                 '}';
     }
-
 }
