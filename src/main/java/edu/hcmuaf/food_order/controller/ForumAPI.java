@@ -2,10 +2,8 @@ package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.Comment;
 import edu.hcmuaf.food_order.model.Question;
-import edu.hcmuaf.food_order.model.Rep;
 import edu.hcmuaf.food_order.repository.CommentRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
-import edu.hcmuaf.food_order.repository.RepRepository;
 import edu.hcmuaf.food_order.service.CommentService;
 import edu.hcmuaf.food_order.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +23,6 @@ public class ForumAPI {
 
     @Autowired
     CommentRepository commentRepository;
-
-    @Autowired
-    RepRepository repRepository;
 
     @Autowired
     QuestionService questionService;
@@ -65,18 +60,9 @@ public class ForumAPI {
         return ResponseEntity.ok(comment);
     }
 
-    @RequestMapping(value = "/rep", method = RequestMethod.POST)
-    public ResponseEntity<?> addRep(@Valid @RequestBody Rep rep) {
-        rep = new Rep(rep.getContent(), rep.getCmtid(), sendDataAPI.getInfoUserSession().getUsername());
-        repRepository.save(rep);
-        rep = repRepository.getOne(repRepository.getMaxId());
-        return ResponseEntity.ok(rep);
-    }
-
     private void sendDetailQuestion(Model model, int questionID, String url) {
         model.addAttribute("detailquestion", question);
         model.addAttribute("listComment", commentRepository.findAllByQuestionID(questionID));
-        model.addAttribute("listRep", repRepository.findAll());
         sendDataAPI.sendInfoUser();
         sendDataAPI.getSession().getAttribute("infoUser");
         sendDataAPI.getPage(model, url);

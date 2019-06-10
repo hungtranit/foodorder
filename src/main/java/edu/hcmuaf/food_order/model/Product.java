@@ -54,6 +54,8 @@ public class Product {
     @Column(name = "price", nullable = false)
     private int price;
 
+
+    @Temporal(value = TemporalType.TIMESTAMP)
     @Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
     @DateBridge(resolution = Resolution.DAY)
     @Column(name = "posttime", nullable = false)
@@ -73,4 +75,84 @@ public class Product {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+
+    public int getPostid() {
+        return postid;
+    }
+
+    public void setPostid(int postid) {
+        this.postid = postid;
+    }
+
+    public String getTypeproduct() {
+        return typeproduct;
+    }
+
+    public void setTypeproduct(String typeproduct) {
+        this.typeproduct = typeproduct;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public String getDecriptionproduct() {
+        return decriptionproduct;
+    }
+
+    public void setDecriptionproduct(String decriptionproduct) {
+        this.decriptionproduct = decriptionproduct;
+    }
+
+    public String getAddressproduct() {
+        return addressproduct;
+    }
+
+    public void setAddressproduct(String addressproduct) {
+        this.addressproduct = addressproduct;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Date getPosttime() {
+        return posttime;
+    }
+
+    public void setPosttime(Date posttime) {
+        this.posttime = posttime;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

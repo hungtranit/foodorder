@@ -215,8 +215,9 @@ div#preloader {
     padding: 70px 0px 80px;
 }
 
-.area-padding-2 {
-    padding: 70px 0px 50px;
+.area-padding-detail {
+    padding: 80px 0px 0px;
+    background: #d9d9d9;
 }
 
 .padding-2 {
@@ -813,7 +814,7 @@ div#preloader {
 }
 
 .team-member::before {
-    background: rgba(0, 0, 0, 0) url("../img/team/team01.jpg") repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url("../img/team/1.jpg") repeat scroll 0 0;
     content: "";
     display: block;
     height: 100%;
