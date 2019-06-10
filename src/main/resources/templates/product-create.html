@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header-admin::head-css">
+
+</head>
+<body>
+<div class="page-container">
+    <div th:replace="fragment/header-admin::menu"></div>
+    <!-- main content area start -->
+    <div class="main-content">
+        <div th:replace="fragment/header-admin::header"></div>
+        <div th:replace="fragment/header-admin::title"></div>
+        <div class="main-content-inner">
+            <!-- login area start -->
+            <div class="login-area">
+                <div class="container">
+                    <div class="login-box ptb--100">
+                        <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="POST">
+                            <div class="login-form-head">
+                                <h4>Thêm sản phẩm</h4>
+
+                            </div>
+                            <div class="login-form-body">
+                                <div class="form-gp">
+                                    <label for="exampleInputName">ID</label>
+                                    <input type="hidden" id="exampleInputName" th:field="*{postid}">
+
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputName1">Tên sản phẩm</label>
+                                    <input type="text" id="exampleInputName1" th:field="*{productname}">
+                                    <i class="ti-shopping-cart"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputType">Loại sản phẩm</label>
+                                    <input type="text" id="exampleInputType" th:field="*{typeproduct}">
+                                    <i class="ti-shopping-cart"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputDes">Chi tiết</label>
+                                    <input type="text" id="exampleInputDes" th:field="*{decriptionproduct}">
+                                    <i class="ti-info"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputImg">Hình ảnh</label>
+                                    <input type="file" id="exampleInputImg" th:field="*{img}">
+                                    <i class="ti-image"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputPrice">Giá</label>
+                                    <input type="text" id="exampleInputPrice" th:field="*{price}">
+                                    <i class="ti-money"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputAdderss">Địa chỉ</label>
+                                    <input type="text" id="exampleInputAdderss" th:field="*{addressproduct}">
+                                    <i class="ti-shopping-cart"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputUsername">Người thêm sản phẩm</label>
+                                    <input type="text" id="exampleInputUsername" th:field="*{username}">
+                                    <i class="ti-money"></i>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputPhone">Số điện thoại</label>
+                                    <input type="text" id="exampleInputPhone" th:field="*{phone}">
+                                    <i class="ti-money"></i>
+                                </div>
+                                <div class="submit-btn-area">
+                                    <button id="form_submit" type="submit">Thêm vào danh sách<i class="ti-arrow-right"></i></button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- login area end -->
+        </div>
+    </div>
+</div>
+<!-- modernizr css-admin -->
+<script th:src="@{/js-admin/vendor/modernizr-2.8.3.min.js}"></script>
+<!-- jquery latest version -->
+<script th:src="@{/js-admin/vendor/jquery-2.2.4.min.js}"></script>
+<!-- bootstrap 4 js-admin -->
+<script th:src="@{/js-admin/popper.min.js}"></script>
+<script th:src="@{/js-admin/bootstrap.min.js}"></script>
+<script th:src="@{/js-admin/owl.carousel.min.js}"></script>
+<script th:src="@{/js-admin/metisMenu.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slicknav.min.js}"></script>
+
+<!-- Start datatable js-admin -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<!-- others plugins -->
+<script th:src="@{/js-admin/plugins.js}"></script>
+<script th:src="@{/js-admin/scripts.js}"></script>
+</body>
+</html>
