@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header-admin::head-css">
+
+</head>
+<body>
+<div class="page-container">
+    <div th:replace="fragment/header-admin::menu"></div>
+    <!-- main content area start -->
+    <div class="main-content">
+        <div th:replace="fragment/header-admin::header"></div>
+        <div th:replace="fragment/header-admin::title"></div>
+        <div class="main-content-inner">
+            <div class="col-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Sửa thông tin sản phẩm</h4>
+                        <form class="form-horizontal"  action="#" th:action="@{/saveProduct}" th:object="${product}" method="POST">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label" for="disabledTextInput">ID</label>
+                                    <input type="hidden" th:field="*{postid}" class="form-control" id="disabledTextInput" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Tên sản phẩm</label>
+                                    <input type="text" th:field="*{productname}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Loại sản phẩm</label>
+                                    <input type="text" th:field="*{typeproduct}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Chi tiết</label>
+                                    <input type="text" th:field="*{decriptionproduct}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <label class="col-form-label" for="inputGroupFile01">Hình ảnh</label>
+                                    <input type="file" th:field="*{img}" class="custom-file-input" id="inputGroupFile01" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Giá</label>
+                                    <input type="text" th:field="*{price}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Số điện thoại</label>
+                                    <input type="text" th:field="*{username}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Số điện thoại</label>
+                                    <input type="text" th:field="*{phone}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="col-form-label">Địa chỉ</label>
+                                    <input type="text" th:field="*{addressproduct}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="submit-btn-area">
+                                <button id="form_submit" type="submit" class="btn btn-primary btn-lg btn-block">Cập nhật</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modernizr css-admin -->
+<script th:src="@{/js-admin/vendor/modernizr-2.8.3.min.js}"></script>
+<!-- jquery latest version -->
+<script th:src="@{/js-admin/vendor/jquery-2.2.4.min.js}"></script>
+<!-- bootstrap 4 js-admin -->
+<script th:src="@{/js-admin/popper.min.js}"></script>
+<script th:src="@{/js-admin/bootstrap.min.js}"></script>
+<script th:src="@{/js-admin/owl.carousel.min.js}"></script>
+<script th:src="@{/js-admin/metisMenu.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slicknav.min.js}"></script>
+
+<!-- Start datatable js-admin -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<!-- others plugins -->
+<script th:src="@{/admin/js-admin/plugins.js}"></script>
+<script th:src="@{/admin/js-admin/scripts.js}"></script>
+
+
+</body>
+</html>

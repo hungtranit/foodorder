@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header-admin::head-css">
+
+</head>
+<body>
+<div class="page-container">
+    <div th:replace="fragment/header-admin::menu"></div>
+    <!-- main content area start -->
+    <div class="main-content">
+        <div th:replace="fragment/header-admin::header"></div>
+        <div th:replace="fragment/header-admin::title"></div>
+        <div class="main-content-inner">
+            <!-- color pricing start -->
+            <div class="row">
+                <div class="col-xl-3 col-ml-6 col-mdl-4 col-sm-6 mt-5">
+                    <div class="card">
+                        <div class="pricing-list">
+                            <div class="prc-head">
+                                <h4>Thông tin sản phẩm</h4>
+                            </div>
+                            <div class="prc-list">
+                                <ul>
+                                    <li><p th:utext="${product.postid}"></p></li>
+                                    <li><p th:utext="${product.productname}"></p></li>
+                                    <li><p th:utext="${product.typeproduct}"></p></li>
+                                    <li><p th:utext="${product.decriptionproduct}"></p></li>
+                                    <li><p th:src="@{'/myimages/' + ${product.img}}"></p></li>
+                                    <li><p th:utext="${product.price}"></p></li>
+                                    <li><p th:utext="${product.addressproduct}"></p></li>
+                                    <li><p th:utext="${product.posttime}"></p></li>
+                                    <li><p th:utext="${product.username}"></p></li>
+                                    <li><p th:utext="${product.phone}"></p></li>
+                                </ul>
+                                <a th:href="@{/product-update/{id}(id=${product.postid})}">Sửa thông tin</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- modernizr css-admin -->
+<script th:src="@{/js-admin/vendor/modernizr-2.8.3.min.js}"></script>
+<!-- jquery latest version -->
+<script th:src="@{/js-admin/vendor/jquery-2.2.4.min.js}"></script>
+<!-- bootstrap 4 js-admin -->
+<script th:src="@{/js-admin/popper.min.js}"></script>
+<script th:src="@{/js-admin/bootstrap.min.js}"></script>
+<script th:src="@{/js-admin/owl.carousel.min.js}"></script>
+<script th:src="@{/js-admin/metisMenu.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js-admin/jquery.slicknav.min.js}"></script>
+
+<!-- Start datatable js-admin -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<!-- others plugins -->
+<script th:src="@{/js-admin/plugins.js}"></script>
+<script th:src="@{/js-admin/scripts.js}"></script>
+</body>
+</html>
