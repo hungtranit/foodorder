@@ -1,6 +1,7 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.InfoUser;
+import edu.hcmuaf.food_order.repository.ProductRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
@@ -26,6 +27,9 @@ public class UserAPI {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Autowired
     QuestionService questionService;
@@ -57,11 +61,20 @@ public class UserAPI {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
+        model.addAttribute("productforum", productRepository.findAll());
+        sendProductForum();
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
         sendTypeQuestion();
         return "index";
+    }
+
+    @RequestMapping(value = "productforum", method = RequestMethod.POST)
+    public ModelAndView sendProductForum() {
+        ModelAndView mav = new ModelAndView("products");
+        mav.addObject("productforum", productRepository.findAll());
+        return mav;
     }
 
     @RequestMapping(value = "typequestion", method = RequestMethod.POST)
@@ -108,5 +121,16 @@ public class UserAPI {
         return ResponseEntity.ok(message);
     }
 
+    @RequestMapping(value = "/check-user", method = RequestMethod.GET)
+    public ResponseEntity<?> checkUser(@Valid @RequestParam(value = "username") String username) {
+        int message;
+        System.out.println("check username: ............");
+        if (userRepository.existsByUsername(username)) {
+            message = 1;
+        } else {
+            message = 0;
+        }
+        return ResponseEntity.ok(message);
+    }
 
 }

@@ -6,24 +6,23 @@ $(document).ready(function () {
         var formatEmail = $('#email').val();
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (filter.test(formatEmail)) {
-            $('#email').on('change', function() {
+            $('#email').on('change', function () {
                 $.ajax({
                     url: "/check-email",
                     data: {
-                        'email' : $('#email').val()
+                        'email': $('#email').val()
                     },
                     dataType: 'json',
-                    success: function(data) {
-                        if(data == 1) {
+                    success: function (data) {
+                        if (data == 1) {
                             $('#msg-email').text("Email đã tồn tại");
                             btnSubmit.disabled = true;
-                        }
-                        else {
+                        } else {
                             $('#msg-email').text("Bạn có thể sử dụng email này");
                             btnSubmit.disabled = false;
                         }
                     },
-                    error: function(e){
+                    error: function (e) {
                         console.log("check mail fail: " + e);
                     }
                 });
@@ -88,6 +87,38 @@ $(document).ready(function () {
         }
     });
 
+    // kiem tra username
+    $('#username').keyup(function () {
+        var username = $("#username").val();
+        if (username.length < 6 || username.length > 24) {
+            $('#msg-username').text("* Tài khoản phải hơn 5 và ít hơn 25 kí tự");
+            username.focus;
+            btnSubmit.disabled = true;
+        } else {
+            $('#username').on('change', function () {
+                $.ajax({
+                    url: "/check-user",
+                    data: {
+                        'username': $('#username').val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data == 1) {
+                            $('#msg-username').text("Tài khoản đã tồn tại");
+                            btnSubmit.disabled = true;
+                        } else {
+                            $('#msg-username').text("Bạn có thể sử dụng tài khoản này này");
+                            btnSubmit.disabled = false;
+                        }
+                    },
+                    error: function (e) {
+                        console.log("check user fail: " + e);
+                    }
+                });
+            });
+        }
+    });
+
     $('#register-form').submit(function (event) {
         event.preventDefault();
         postUser();
@@ -119,4 +150,5 @@ $(document).ready(function () {
             }
         });
     };
-});
+})
+;

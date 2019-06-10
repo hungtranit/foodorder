@@ -1,6 +1,5 @@
 package edu.hcmuaf.food_order.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

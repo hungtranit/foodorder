@@ -34,93 +34,13 @@
                     </div>
                 </div>
             </div>
-            <div class="awesome-project-content">
+            <div class="awesome-project-content" th:each="product : ${productforum}">
                 <!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development" style="padding-bottom: 15px;">
+                <div class="col-md-3 col-sm-3 col-xs-12 design development"
+                     style="padding-bottom: 15px;">
                     <div class="single-awesome-project">
                         <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                        <h4>Business City</h4>
-                                        <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design photo" style="padding-bottom: 15px;">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                        <h4>Business City</h4>
-                                        <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end --><!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 photo development" style="padding-bottom: 15px;">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                        <h4>Business City</h4>
-                                        <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end --><!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development" style="padding-bottom: 15px;">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                        <h4>Business City</h4>
-                                        <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end --><!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development photo" style="padding-bottom: 15px;">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
-                                        <h4>Business City</h4>
-                                        <span>Web Development</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end --><!-- single-awesome-project start -->
-                <div class="col-md-3 col-sm-3 col-xs-12 design development" style="padding-bottom: 15px;">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt=""/></a>
+                            <a href="#"><img th:src="@{'/home/img/portfolio/'+${product.getImg()}+'.jpg'}" alt=""/></a>
                             <div class="add-actions text-center">
                                 <div class="project-dec">
                                     <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
