@@ -18,17 +18,9 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="awesome-menu ">
                         <ul class="project-menu">
-                            <li>
-                                <a href="#" class="active" data-filter="*">bánh kem socola</a>
-                            </li>
-                            <li>
-                                <a href="#" data-filter=".development">kẹo</a>
-                            </li>
-                            <li>
-                                <a href="#" data-filter=".design">đồ ngọt</a>
-                            </li>
-                            <li>
-                                <a href="#" data-filter=".photo">gì gì đó ngọt</a>
+                            <li><a href="#" class="active" data-filter="*">Tất cả</a></li>
+                            <li th:each="productDetail : ${typeproduct}">
+                                <a href="#" data-filter=".development" th:text="${productDetail.getTypeproduct()}"></a>
                             </li>
                         </ul>
                     </div>
@@ -36,161 +28,12 @@
             </div>
             <div class="awesome-project-content">
                 <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design development">
+                <div class="col-md-3 col-sm-3 col-xs-12 design development" th:each="productDetail : ${typeproduct}">
                     <div class="single-awesome-project">
                         <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/1.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/1.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/2.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/2.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/3.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/3.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 photo development">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/4.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/4.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 development">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/5.jpg" alt="" /></a>
-                            <div class="add-actions text-center text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/5.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/6.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/6.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/6.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/6.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/6.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/6.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/6.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/6.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-awesome-project end -->
-                <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                    <div class="single-awesome-project">
-                        <div class="awesome-img">
-                            <a href="#"><img src="/home/img/portfolio/6.jpg" alt="" /></a>
-                            <div class="add-actions text-center">
-                                <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" href="/home/img/portfolio/6.jpg">
-                                        <h4>Nhấn để xem ảnh</h4>
-                                    </a>
-                                </div>
-                            </div>
+                            <a th:href="@{'/search-page/' + ${productDetail.getTypeproduct()}}">
+                                <img th:src="@{'/img-product/' + ${productDetail.getImg()}}" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,40 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>eBusiness Bootstrap Template</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
-<!-- Favicons -->
-<link th:href="@{./home/img/favicon.png}" rel="icon">
-<link th:href="@{./home/img/apple-touch-icon.png}" rel="apple-touch-icon">
-<!-- Google Fonts -->
-<link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
-        rel="stylesheet">
-<!-- Bootstrap CSS File -->
-<link th:href="@{./home/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-<!-- Libraries CSS Files -->
-<link th:href="@{./home/lib/nivo-slider/css/nivo-slider.css}" rel="stylesheet">
-<link th:href="@{./home/lib/owlcarousel/owl.carousel.css}" rel="stylesheet">
-<link th:href="@{./home/lib/owlcarousel/owl.transitions.css}" rel="stylesheet">
-<link th:href="@{./home/lib/font-awesome/css/font-awesome.min.css}"
-      rel="stylesheet">
-<link th:href="@{./home/lib/animate/animate.min.css}" rel="stylesheet">
-<link th:href="@{./home/lib/venobox/venobox.css}" rel="stylesheet">
-<!-- Nivo Slider Theme -->
-<link th:href="@{./home/css/nivo-slider-theme.css}" rel="stylesheet">
-<!-- Main Stylesheet File -->
-<link th:href="@{./home/css/style.css}" rel="stylesheet">
-<!-- Responsive Stylesheet File -->
-<link th:href="@{./home/css/responsive.css}" rel="stylesheet">
-<!-- =======================================================
-    Theme Name: eBusiness
-    Theme URL: https://bootstrapmade.com/ebusiness-bootstrap-corporate-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+    <meta charset="UTF-8">
+    <title>eBusiness Bootstrap Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Favicons -->
+    <link th:href="@{./home/img/favicon.png}" rel="icon">
+    <link th:href="@{./home/img/apple-touch-icon.png}" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
+            rel="stylesheet">
+    <!-- Bootstrap CSS File -->
+    <link th:href="@{./home/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Libraries CSS Files -->
+    <link th:href="@{./home/lib/nivo-slider/css/nivo-slider.css}" rel="stylesheet">
+    <link th:href="@{./home/lib/owlcarousel/owl.carousel.css}" rel="stylesheet">
+    <link th:href="@{./home/lib/owlcarousel/owl.transitions.css}" rel="stylesheet">
+    <link th:href="@{./home/lib/font-awesome/css/font-awesome.min.css}"
+          rel="stylesheet">
+    <link th:href="@{./home/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{./home/lib/venobox/venobox.css}" rel="stylesheet">
+    <!-- Nivo Slider Theme -->
+    <link th:href="@{./home/css/nivo-slider-theme.css}" rel="stylesheet">
+    <!-- Main Stylesheet File -->
+    <link th:href="@{./home/css/style.css}" rel="stylesheet">
+    <!-- Responsive Stylesheet File -->
+    <link th:href="@{./home/css/responsive.css}" rel="stylesheet">
 </head>
 <body>
 <!-- Start team Area -->
@@ -48,116 +42,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="team-top">
+            <div class="team-top" th:each="detailProduct : ${productadmin}"
+                 th:if="${detailProduct.getTypeproduct() == null}">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team-member pad-3">
                         <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/1.jpg" alt="">
-                            </a>
-
-                        </div>
-                        <div class="team-content">
-                            <h4>Jhon Mickel</h4>
-                            <p>Seo</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/2.jpg" alt="">
+                            <a th:href="@{'/detail-product/' + ${detailProduct.getPostid()}}">
+                                <img th:src="@{'/img-product/'+ ${detailProduct.getImg()}}" alt="">
                             </a>
                         </div>
                         <div class="team-content">
-                            <h4>Andrew Arnold</h4>
-                            <p>Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member  pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/3.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content">
-                            <h4>Lellien Linda</h4>
-                            <p>Web Design</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content ml-3">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content ">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12 mb-2">
-                    <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="/home/img/team/4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="team-content ">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
+                            <h4 th:text="${detailProduct.getProductname()}"></h4>
+                            <p th:text="'Giá: '+ ${detailProduct.getPrice()} + ' VNĐ'"></p>
+                            <p th:text="'Số Lượng: '+ ${detailProduct.getQuantity()}"></p>
                         </div>
                     </div>
                 </div>

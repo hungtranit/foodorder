@@ -25,12 +25,6 @@
     <link href="/home/css/style.css" rel="stylesheet">
     <!-- Responsive Stylesheet File -->
     <link href="/home/css/responsive.css" rel="stylesheet">
-    <!-- =======================================================
-        Theme Name: eBusiness
-        Theme URL: https://bootstrapmade.com/ebusiness-bootstrap-corporate-template/
-        Author: BootstrapMade.com
-        License: https://bootstrapmade.com/license/
-      ======================================================= -->
     <style>
         html {
             background: #bbc3c6;
@@ -47,14 +41,6 @@
             font-family: 'Shopper';
             src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
         }
-
-        .shopper {
-            text-transform: lowercase;
-            font: 2em 'Shopper', sans-serif;
-            line-height: 0.5em;
-            display: inline-block;
-        }
-
 
         h1 {
             text-transform: uppercase;
@@ -265,7 +251,7 @@
     </div>
     <div class="cart transition">
         <a href="#" class="btn btn-update">Update cart</a>
-        <div class="table">
+        <form class="table">
             <div class="layout-inline row th">
                 <div class="col col-pro">Product</div>
                 <div class="col col-price align-center ">
@@ -297,7 +283,7 @@
                     <div class="col"></div>
                 </div>
             </div>
-        </div>
+        </form>
         <a href="#" class="btn btn-update">Đặt Hàng</a>
     </div>
 </div>
@@ -316,7 +302,6 @@
 <!-- Contact Form JavaScript File -->
 <script src="/home/contactform/contactform.js"></script>
 <script src="/home/js/main.js"></script>
-<script type="text/javascript" src="/forum/comment.js"></script>
 <script type="text/javascript">
     // SHOPPING CART PLUS OR MINUS
     $('a.qty-minus').on('click', function (e) {
@@ -324,10 +309,10 @@
         var $this = $(this);
         var $input = $this.closest('div').find('input');
         var value = parseInt($input.val());
-        if (value > 1) {
+        if (value > 2) {
             value = value - 1;
         } else {
-            value = 0;
+            value = 1;
         }
         $input.val(value);
     });
@@ -337,10 +322,10 @@
         var $this = $(this);
         var $input = $this.closest('div').find('input');
         var value = parseInt($input.val());
-        if (value < 100) {
+        if (value < 10) {
             value = value + 1;
         } else {
-            value = 100;
+            value = 10;
         }
         $input.val(value);
     });

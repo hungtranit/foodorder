@@ -24,33 +24,100 @@
     <link href="/home/css/style.css" rel="stylesheet">
     <!-- Responsive Stylesheet File -->
     <link href="/home/css/responsive.css" rel="stylesheet">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .btn {
+            padding: 10px 30px;
+            border-radius: 0.3em;
+            font-size: 1.4em;
+            font-weight: bold;
+            background: #43ace3;
+            color: #fff;
+            box-shadow: 0 3px 0 rgba(59, 154, 198, 1)
+        }
+
+        .btn:hover {
+            box-shadow: 0 3px 0 rgba(59, 154, 198, 0)
+        }
+
+        .btn-update {
+            float: right;
+            margin: 0 0 1.5em 0;
+        }
+
+    </style>
 </head>
 <body>
 <div id="preloader"></div>
 <div th:insert="header.html :: header"></div>
 <div th:fragment="header"></div>
-
-<!-- Start Footer bottom Area -->
-<footer>
-    <div class="footer-area-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="copyright text-center">
-                        <p>
-                            &copy; Copyright <strong>eBusiness</strong>. All Rights Reserved
-                        </p>
+<br><br>
+<div id="portfolio" class="portfolio-area area-padding" th:fragment="portfolio">
+    <div class="container" style="...">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="awesome-project-content">
+                    <!-- single-awesome-project start -->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="single-awesome-project">
+                            <div class="awesome-img">
+                                <img th:src="@{'/img-product/' + ${detailProduct.getImg()}}" alt="">
+                            </div>
+                        </div>
                     </div>
-                    <div class="credits">
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
+                    <!-- single-awesome-project end -->
                 </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <h3>Chi tiết sản phẩm</h3>
+                <br>
+                <table>
+                    <tr>
+                        <th>Tên Sản Phẩm</th>
+                        <th th:text="${detailProduct.getProductname()}"></th>
+                    </tr>
+                    <tr>
+                        <th>Số Lượng</th>
+                        <th th:text="${detailProduct.getQuantity()}"></th>
+                    </tr>
+                    <tr>
+                        <th>Giá</th>
+                        <th th:text="${detailProduct.getPrice()}"></th>
+                    </tr>
+                    <tr th:if="${detailProduct.getPhone() != null}">
+                        <th>Số Điện Thoại</th>
+                        <th th:text="${detailProduct.getPhone()}"></th>
+                    </tr>
+                    <tr th:if="${detailProduct.getAddressproduct() != null}">
+                        <th>Địa Chỉ</th>
+                        <th th:text="${detailProduct.getAddressproduct()}"></th>
+                    </tr>
+                </table>
+                <br>
+                <a href="#" class="btn btn-update" th:if="${detailProduct.getTypeproduct() == null}">Thêm Vào Giỏ
+                    Hàng</a>
             </div>
         </div>
     </div>
-</footer>
-<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
+</div>
+<div th:insert="footer.html :: footer"></div>
+<div th:fragment="footer"></div>
+<!-- Start Footer bottom Area -->
 <!-- JavaScript Libraries -->
 <script src="/home/lib/jquery/jquery.min.js"></script>
 <script src="/home/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -66,5 +133,45 @@
 <!-- Contact Form JavaScript File -->
 <script src="/home/contactform/contactform.js"></script>
 <script src="/home/js/main.js"></script>
+<script type="text/javascript">
+    // SHOPPING CART PLUS OR MINUS
+    $('a.qty-minus').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+        if (value > 2) {
+            value = value - 1;
+        } else {
+            value = 1;
+        }
+        $input.val(value);
+    });
+
+    $('a.qty-plus').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+        if (value < 10) {
+            value = value + 1;
+        } else {
+            value = 10;
+        }
+        $input.val(value);
+    });
+
+    // RESTRICT INPUTS TO NUMBERS ONLY WITH A MIN OF 0 AND A MAX 100
+    $('input').on('blur', function () {
+        var input = $(this);
+        var value = parseInt($(this).val());
+        if (value < 0 || isNaN(value)) {
+            input.val(0);
+        } else if
+        (value > 100) {
+            input.val(100);
+        }
+    });
+</script>
 </body>
 </html>

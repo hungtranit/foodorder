@@ -3,6 +3,7 @@ package edu.hcmuaf.food_order.controller;
 import edu.hcmuaf.food_order.model.InfoUser;
 import edu.hcmuaf.food_order.repository.ProductRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
+import edu.hcmuaf.food_order.repository.TypeProductRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
@@ -35,6 +36,9 @@ public class UserAPI {
     QuestionService questionService;
 
     @Autowired
+    TypeProductRepository typeProductRepository;
+
+    @Autowired
     SendDataAPI sendDataAPI;
 
     @PostMapping("/login")
@@ -61,8 +65,11 @@ public class UserAPI {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
-        model.addAttribute("productforum", productRepository.findAll());
-        sendProductForum();
+        model.addAttribute("productadmin", productRepository.findAll());
+        sendProductAdmin();
+        model.addAttribute("typeproduct", typeProductRepository.findAll());
+        System.out.println("type product: " + typeProductRepository.findAll());
+        sendTypeProduct();
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
@@ -70,10 +77,17 @@ public class UserAPI {
         return "index";
     }
 
-    @RequestMapping(value = "productforum", method = RequestMethod.POST)
-    public ModelAndView sendProductForum() {
+    @RequestMapping(value = "productadmin", method = RequestMethod.POST)
+    public ModelAndView sendProductAdmin() {
+        ModelAndView mav = new ModelAndView("services");
+        mav.addObject("productadmin", productRepository.findAll());
+        return mav;
+    }
+
+    @RequestMapping(value = "typeproduct", method = RequestMethod.POST)
+    public ModelAndView sendTypeProduct() {
         ModelAndView mav = new ModelAndView("products");
-        mav.addObject("productforum", productRepository.findAll());
+        mav.addObject("typeproduct", typeProductRepository.findAll());
         return mav;
     }
 
