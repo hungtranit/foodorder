@@ -109,8 +109,12 @@
                     </tr>
                 </table>
                 <br>
-                <a href="#" class="btn btn-update" th:if="${detailProduct.getTypeproduct() == null}">Thêm Vào Giỏ
-                    Hàng</a>
+                <form>
+                    <input type="hidden" id="in-product" th:value="${detailProduct.getPostid()}">
+                    <a th:href="@{'/shopping-cart/add/' + ${detailProduct.getPostid()}}" class="btn btn-update"
+                       th:if="${detailProduct.getTypeproduct() == null}">Thêm Vào Giỏ
+                        Hàng</a>
+                </form>
             </div>
         </div>
     </div>

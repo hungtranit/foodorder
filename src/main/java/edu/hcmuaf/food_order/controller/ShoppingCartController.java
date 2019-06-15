@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +24,11 @@ public class ShoppingCartController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    HttpSession httpSessionCart;
+
+    List<Product> cart = new ArrayList<>();
+
     @GetMapping("/shopping-cart")
     public String getShopCart(Model model) {
         sendDataAPI.sendInfoUser();
@@ -32,28 +38,30 @@ public class ShoppingCartController {
         return "shopping-cart";
     }
 
-    public ModelAndView sendInfoUser() {
+    private ModelAndView sendInfoUser() {
         ModelAndView mav = new ModelAndView("shopping-cart");
         mav.addObject("infoUser", sendDataAPI.getInfoUserSession());
         return mav;
     }
 
+    private ModelAndView sendCart() {
+        ModelAndView mav = new ModelAndView("header");
+        mav.addObject("qualityProduct", cart.size());
+        return mav;
+    }
+
     @GetMapping("/shopping-cart/add/{productID}")
-    public @ResponseBody
-    Product addToShoppingCart(Model model, @PathVariable int productID, HttpSession httpSession) {
-        Product product = null;
+    public String addToShoppingCart(Model model, @PathVariable int productID) {
         sendDataAPI.sendInfoUser();
         sendDataAPI.getSession().getAttribute("infoUser");
         sendInfoUser();
         sendDataAPI.getPage(model, "shopping-cart");
-        if (httpSession.getAttribute("cart") == null) {
-            List<Product> cart = new ArrayList<>();
-            product = productRepository.getOne(productID);
-            cart.add(product);
-            httpSession.setAttribute("cart", cart);
-        }
-        return product;
+        Product product = productRepository.getOne(productID);
+        cart.add(product);
+        httpSessionCart.setAttribute("cart", cart);
+        model.addAttribute("qualityProduct", cart.size());
+        sendCart();
+        return "shopping-cart";
     }
-
 
 }
