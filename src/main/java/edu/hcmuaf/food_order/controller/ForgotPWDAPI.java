@@ -3,6 +3,7 @@ package edu.hcmuaf.food_order.controller;
 import edu.hcmuaf.food_order.model.InfoUser;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.UserService;
+import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class ForgotPWDAPI {
         if (!userRepository.existsByUsername(infoUser.getUsername()) || !userRepository.existsByEmail(infoUser.getEmail())) {
             result = false;
         } else {
-            userService.sendMail(infoUser.getEmail(), infoUser.getUsername());
+            userService.sendMailCreatePassword(infoUser.getEmail(), infoUser.getUsername());
             result = true;
         }
         return ResponseEntity.ok(result);

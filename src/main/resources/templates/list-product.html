@@ -45,7 +45,7 @@
                                         </td>
                                         <td><p th:utext="${products.typeproduct}"></p></td>
                                         <td><p th:utext="${products.decriptionproduct}"></p></td>
-                                        <td><image th:src="@{'../static/myimages/' + ${products.img}}"></image></td>
+                                        <td><img th:src="${'/img-product/' + products.img}"></td>
                                         <td><p th:utext="${products.price}"></p></td>
                                         <td><p th:utext="${products.addressproduct}"></p></td>
                                         <td><a th:href="@{/product-update/{id}(id=${products.postid})}">Edit</a></td>

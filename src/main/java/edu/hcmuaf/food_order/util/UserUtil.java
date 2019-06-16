@@ -1,16 +1,26 @@
 package edu.hcmuaf.food_order.util;
 
+import edu.hcmuaf.food_order.controller.SendDataAPI;
+import edu.hcmuaf.food_order.model.Item;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 public class UserUtil {
 
     @Autowired
     public static UserRepository userRepository;
+
+    @Autowired
+    public static SendDataAPI sendDataAPI;
 
     public static String encryptPassword(String password) {
         final byte[] defaultBytes = password.getBytes();
