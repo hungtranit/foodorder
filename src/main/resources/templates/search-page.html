@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://xmlns.jcp.org/xml/ns/javaee">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,42 +15,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div th:insert="header.html :: header"></div>
-    <div th:fragment="header"></div>
+<!--    <div th:insert="header.html :: header"></div>-->
+<!--    <div th:fragment="header"></div>-->
         <!--navigation bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand ml-4" href="#">datcom</a>
+                <a class="navbar-brand ml-4" href="../index">Food NLU</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
               
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto ">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                  </ul>
-                  
-                </div>
+
               </nav>
-        </header>
         <!--end header-->
         <section class="container">
                 <div class="row">
@@ -60,9 +35,9 @@
                             <h5>Mua bán, rao vặt nhanh chóng, uy tín tại Chợ tốt Tp Hồ Chí Minh</h5>
                         </div>
                         <div class="card-body border-bottom">
-                            <form action="">
+                            <from th:action="@{/search-page}"  method:post >
                                 <div class="row form-margin">
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search" id="search">
                                 </div>
                                 <div class="row form-margin">
                                    <!--area modal--> 
@@ -141,8 +116,9 @@
                                     <!--area modal--> 
                                       
                             </div>
-                        </form>
+                        </from>
                         </div>
+                        <div></div>
                         <div class="card mb-3 mt-2" >
                           <div class="row no-gutters">
                             <div class="col-md-4">
@@ -193,6 +169,27 @@
                       <div class="col-2 card"></div>
                     </div>
                 </div>
+
+            <!--page number-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </section>    
 
        
