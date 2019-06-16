@@ -110,7 +110,8 @@
                                         <li>
                                             <div class="comments-details">
                                                 <div class="comments-list-img">
-                                                    <img src="../home/img/blog/b02.jpg" alt="post-author">
+                                                    <img th:src="@{'/home/img/' + ${cmtList.getUserCMT()} + '.jpg'}"
+                                                         alt="post-author">
                                                 </div>
                                                 <div class="comments-content-wrap">
 														<span> <b><a href="#"

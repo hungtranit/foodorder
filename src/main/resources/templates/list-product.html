@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="fragment/header-admin::head-css">
-
-
 </head>
-
 <body>
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -49,7 +45,7 @@
                                         </td>
                                         <td><p th:utext="${products.typeproduct}"></p></td>
                                         <td><p th:utext="${products.decriptionproduct}"></p></td>
-                                        <td><image th:src="@{'../static/myimages/' + ${products.img}}"></image></td>
+                                        <td><img th:src="@{'../static/myimages/' + ${products.img}}"></td>
                                         <td><p th:utext="${products.price}"></p></td>
                                         <td><p th:utext="${products.addressproduct}"></p></td>
                                         <td><a th:href="@{/product-update/{id}(id=${products.postid})}">Edit</a></td>

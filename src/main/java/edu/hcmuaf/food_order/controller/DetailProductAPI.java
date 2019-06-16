@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -42,17 +43,26 @@ public class DetailProductAPI {
     @PostMapping(value = "/post-product")
     public ResponseEntity<?> postProduct(@Valid @RequestBody Product product) {
         product = new Product(product.getTypeproduct(), product.getProductname(), product.getDecriptionproduct(),
-                product.getAddressproduct(), product.getImg(), product.getPrice(), sendDataAPI.getInfoUserSession().getUsername(), product.getPhone());
+                product.getAddressproduct(), product.getImg(), product.getPrice(),
+                sendDataAPI.getInfoUserSession().getUsername(), product.getPhone(), product.getQuantity());
         System.out.println("frint first: " + product.toString());
         productService.insertProduct(product);
         return ResponseEntity.ok("post-product");
     }
 
-    @GetMapping("/detail-product")
-    public String getDetailProduct(Model model) {
+    @GetMapping("/detail-product/{productID}")
+    public String getDetailProduct(Model model, @PathVariable int productID) {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
+        model.addAttribute("detailProduct", productRepository.getOne(productID));
+        getProduct(productID);
         return "detail-product";
+    }
+
+    private ModelAndView getProduct(int productID) {
+        ModelAndView mav = new ModelAndView("detail-product");
+        mav.addObject("detailProduct", productRepository.getOne(productID));
+        return mav;
     }
 
 }

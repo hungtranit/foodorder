@@ -51,12 +51,12 @@
                                     <div th:each="listQuestion : ${question}"
                                          th:if="${listQuestion.getTypeproduct() == typequesion.getTypeproduct()}"
                                          class="details-question">
-                                        <div class="row">
-                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
                                                 <img>
                                                 <a>img</a>
                                             </div>
-                                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="entry-content">
                                                     <a th:href="@{'/detail-question/' + ${listQuestion.getQuestionid()}}"
                                                        th:text="${listQuestion.getContent()}"></a>

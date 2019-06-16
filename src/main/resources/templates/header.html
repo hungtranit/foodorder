@@ -26,7 +26,7 @@
                             <!-- Brand -->
                             <a class="navbar-brand page-scroll sticky-logo" href="../index">
                                 <h1>
-                                    <span>Food</span>Order
+                                    <span>Food</span>NLU
                                 </h1> <!-- Uncomment below if you prefer to use an image logo -->
                                 <!-- <img th:src="@{./home/img/logo.png" alt="" title=""> -->
                             </a>
@@ -58,9 +58,17 @@
                                        data-toggle="dropdown" th:text="'Chào, '+${infoUser.username}">
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../list-product" th:if="${infoUser.getRoles() == 1}">Quản Lí</a>
+                                        </li>
                                         <li><a href=#>Thông tin tài khoản</a></li>
                                         <li><a th:href="@{/logout}">Thoát</a></li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <a href="../shopping-cart" class="page-scroll">
+                                        <span class="glyphicon glyphicon-shopping-cart"
+                                              th:text="${qualityProduct}"></span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

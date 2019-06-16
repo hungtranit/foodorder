@@ -1,7 +1,9 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.InfoUser;
+import edu.hcmuaf.food_order.repository.ProductRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
+import edu.hcmuaf.food_order.repository.TypeProductRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
@@ -28,7 +30,13 @@ public class UserAPI {
     UserService userService;
 
     @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
     QuestionService questionService;
+
+    @Autowired
+    TypeProductRepository typeProductRepository;
 
     @Autowired
     SendDataAPI sendDataAPI;
@@ -57,11 +65,30 @@ public class UserAPI {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
+        model.addAttribute("productadmin", productRepository.findAll());
+        sendProductAdmin();
+        model.addAttribute("typeproduct", typeProductRepository.findAll());
+        System.out.println("type product: " + typeProductRepository.findAll());
+        sendTypeProduct();
         model.addAttribute("question", questionRepository.findAll());
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
         sendTypeQuestion();
         return "index";
+    }
+
+    @RequestMapping(value = "productadmin", method = RequestMethod.POST)
+    public ModelAndView sendProductAdmin() {
+        ModelAndView mav = new ModelAndView("services");
+        mav.addObject("productadmin", productRepository.findAll());
+        return mav;
+    }
+
+    @RequestMapping(value = "typeproduct", method = RequestMethod.POST)
+    public ModelAndView sendTypeProduct() {
+        ModelAndView mav = new ModelAndView("products");
+        mav.addObject("typeproduct", typeProductRepository.findAll());
+        return mav;
     }
 
     @RequestMapping(value = "typequestion", method = RequestMethod.POST)
@@ -108,5 +135,16 @@ public class UserAPI {
         return ResponseEntity.ok(message);
     }
 
+    @RequestMapping(value = "/check-user", method = RequestMethod.GET)
+    public ResponseEntity<?> checkUser(@Valid @RequestParam(value = "username") String username) {
+        int message;
+        System.out.println("check username: ............");
+        if (userRepository.existsByUsername(username)) {
+            message = 1;
+        } else {
+            message = 0;
+        }
+        return ResponseEntity.ok(message);
+    }
 
 }

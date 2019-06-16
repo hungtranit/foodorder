@@ -157,7 +157,10 @@ h6 {
    #BACKGROUND
    ========================================================================== */
 .bg-blue {
-    background: #2c6ed5;
+    background: url("../images/color-diet-food.jpg") top left/cover no-repeat;
+}
+.bg-image{
+    background: url("../images/color-diet-food.jpg") top right/cover no-repeat fixed;
 }
 
 /* ==========================================================================
@@ -203,7 +206,11 @@ h6 {
     font-size: 14px;
     font-weight: 700;
 }
-
+.btn--pill {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
 .btn--radius {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -440,7 +447,7 @@ input {
 }
 
 .card-1 .card-heading {
-    background: url("../images/bg-head-02.jpg") center center/cover no-repeat;
+    background: url("../images/color-diet-food.jpg") center center/cover no-repeat;
     padding-top: 210px;
 }
 

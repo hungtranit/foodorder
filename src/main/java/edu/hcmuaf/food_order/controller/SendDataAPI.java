@@ -21,7 +21,7 @@ public class SendDataAPI {
     @RequestMapping(value = "infoUser", method = RequestMethod.POST)
     public ModelAndView sendInfoUser() {
         ModelAndView mav = new ModelAndView("header");
-        mav.addObject("infoUser", infoUserSession);
+        mav.addObject("infoUser", getInfoUserSession());
         return mav;
     }
 
@@ -35,7 +35,7 @@ public class SendDataAPI {
     public String getPage(Model model, String url) {
         model.addAttribute("infoUser", infoUserSession);
         sendInfoUser();
-        return "url";
+        return url;
     }
 
     public SendDataAPI() {

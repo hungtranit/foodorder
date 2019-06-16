@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface SearchService {
 
-    public List<Product> searchProuct(String searchText, int pageNo, int resultPerPage);
+    List<Product> searchProuct(String searchText, int pageNo, int resultPerPage);
 
-    public int searchProductPageCount(String searchText, int  resultPerPage);
+    int searchProductPageCount(String searchText, int  resultPerPage);
 
-    public int searchProductResultCount(String searchText);
+    int searchProductResultCount(String searchText);
 
 }
