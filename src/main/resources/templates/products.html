@@ -32,7 +32,7 @@
                     <div class="single-awesome-project">
                         <div class="awesome-img">
                             <a th:href="@{'/search-page/' + ${productDetail.getTypeproduct()}}">
-                                <img th:src="@{'/img-product/' + ${productDetail.getImg()}}" alt="">
+                                <img th:src="@{'/img-product/' + $fb.com{productDetail.getImg()}}" alt="">
                             </a>
                         </div>
                     </div>
