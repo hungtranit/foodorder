@@ -119,36 +119,5 @@ $(document).ready(function () {
         }
     });
 
-    $('#register-form').submit(function (event) {
-        event.preventDefault();
-        postUser();
-    });
-
-    function postUser() {
-        var infoUser = {}
-        infoUser["username"] = $('#username').val(),
-            infoUser["passworduser"] = $('#password').val(),
-            infoUser["fullname"] = $('#full-name').val(),
-            infoUser["addressofuser"] = $('#address').val(),
-            infoUser["email"] = $('#email').val(),
-            infoUser["phone"] = $('#phone').val(),
-            infoUser["avatar"] = $('#avatar').val();
-        $.ajax({
-            type: "POST",
-            url: "/register-user",
-            contentType: "application/json",
-            data: JSON.stringify(infoUser),
-            dataType: 'json',
-            success: function (result) {
-                console.log("result :" + result);
-                window.location.href = "/" + result;
-                $('#register-success').text('Đăng kí tài khoản thành công!!!');
-            },
-            error: function (e) {
-                console.log("this error: " + e);
-                // window.location.href = "/login";
-            }
-        });
-    };
 })
 ;

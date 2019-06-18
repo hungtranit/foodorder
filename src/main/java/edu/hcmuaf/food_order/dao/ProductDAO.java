@@ -44,31 +44,42 @@ public class ProductDAO {
         return product;
     }
 
+    public Product insertProductAdmin(Product product) {
+        String SQL = "insert into INFOPRODUCT(productname, img, price)" + "VALUES(:productname,:img,:price)";
+        KeyHolder holder = new GeneratedKeyHolder();
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("productname", product.getProductname())
+                .addValue("img", product.getImg())
+                .addValue("price", product.getPrice());
+        namedParameterJdbcTemplate.update(SQL, parameterSource, holder);
+        return product;
+    }
+
     @Transactional
-    public List<Product> searchProduct(String searchText, int pageNo, int resultsPerPage){
+    public List<Product> searchProduct(String searchText, int pageNo, int resultsPerPage) {
         FullTextQuery jpaQuery = searchProductQuery(searchText);
         jpaQuery.setMaxResults(resultsPerPage);
-        jpaQuery.setFirstResult((pageNo-1)*resultsPerPage);
+        jpaQuery.setFirstResult((pageNo - 1) * resultsPerPage);
 
         List<Product> productList = jpaQuery.getResultList();
 
         return productList;
     }
+
     @Transactional
-    public int searchProductTotalCount(String searchText){
+    public int searchProductTotalCount(String searchText) {
         FullTextQuery jpaQuery = searchProductQuery(searchText);
         int productCount = jpaQuery.getResultSize();
         return productCount;
     }
 
-    private FullTextQuery searchProductQuery(String searchText){
+    private FullTextQuery searchProductQuery(String searchText) {
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Product.class).get();
 
         org.apache.lucene.search.Query luceneQuery = queryBuilder.keyword().wildcard().
-                onFields("productname","addressproduct","username").boostedTo(5f).matching(searchText + "").createQuery();
+                onFields("productname", "addressproduct", "username").boostedTo(5f).matching(searchText + "").createQuery();
 
-        FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery,Product.class);
+        FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Product.class);
         return jpaQuery;
     }
 }

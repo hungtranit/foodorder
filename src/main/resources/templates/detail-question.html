@@ -47,32 +47,10 @@
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <div class="page-head-blog">
                     <div class="single-blog-page">
-                        <!-- recent start -->
                         <div class="left-blog">
-                            <h4>Relate Question</h4>
-                            <div class="recent-post">
-                                <!-- start single post -->
-                                <div class="recent-single-post">
-                                    <div class="post-img">
-                                        <a href="#"> <img src="../home/img/blog/1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="pst-content">
-                                        <p>
-                                            <a href="#"></a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- End single post -->
-                            </div>
-                        </div>
-                        <!-- recent end -->
-                    </div>
-                    <div class="single-blog-page">
-                        <div class="left-blog">
-                            <h4>categories</h4>
+                            <h4>Loại Câu Hỏi</h4>
                             <ul th:each="listType : ${typequestion}">
-                                <li><a href="#" th:text="${listType.getTypeproduct()}"></a></li>
+                                <li><a href="/index#forum" th:text="${listType.getTypeproduct()}"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -153,6 +131,8 @@
         </div>
     </div>
 </div>
+<div th:insert="footer.html :: footer"></div>
+<div th:fragment="footer"></div>
 <!-- End Blog Area -->
 <div class="clearfix"></div>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

@@ -1,20 +1,6 @@
 $(document).ready(function () {
     var btnSubmit = document.getElementById('btn-post-product');
 
-    // xac nhan phone
-    // $("#post-phone").keyup(function () {
-    //     var phone = $("#phone").val();
-    //     var regexPattern = /([0-9]{10})/;
-    //     if (!regexPattern.test(phone) || phone.length > 11) {
-    //         $('#msg-phone').text("* Số điện thoại không hợp lệ");
-    //         phone.focus;
-    //         btnSubmit.disabled = true;
-    //     } else {
-    //         $('#msg-phone').text("");
-    //         btnSubmit.disabled = false;
-    //     }
-    // });
-
     $('#post-product').submit(function (e) {
         e.preventDefault();
         postProduct();

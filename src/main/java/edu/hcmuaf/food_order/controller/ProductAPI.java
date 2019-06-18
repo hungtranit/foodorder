@@ -14,14 +14,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProductAPI {
+
     @Autowired
     ProductService productService;
+
     //list product
     @RequestMapping(value = "/list-product")
     public String viewProducts(Model model) {
         model.addAttribute("listProduct", productService.finAll());
         return "list-product";
     }
+
     //view product by id
     @RequestMapping(value = "/product-view/{id}")
     public String viewProductPage(@PathVariable("id") int id, Model model) {
@@ -29,19 +32,30 @@ public class ProductAPI {
         model.addAttribute("product", product);
         return "product-view";
     }
+
     //create new product page
     @RequestMapping(value = {"/product-create"}, method = RequestMethod.GET)
     public String createProductPage(Model model) {
         model.addAttribute("product", new Product());
         return "product-create";
     }
+
+    //process save product
+    @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+    public String updateProduct(Model model, @ModelAttribute("product") Product product) {
+        productService.save(product);
+        model.addAttribute("listProduct", productService.finAll());
+        return "list-product";
+    }
+
     //process save product
     @RequestMapping(value = "/saveProduct", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product, RedirectAttributes redirect) {
-        productService.save(product);
-        redirect.addFlashAttribute("success", "Save successful!");
-        return "redirect:/list-product";
+    public String saveProductAdmin(Model model, @ModelAttribute("product") Product product) {
+        productService.insertProductAdmin(product);
+        model.addAttribute("listProduct", productService.finAll());
+        return "list-product";
     }
+
     //update product page
     @RequestMapping(value = "/product-update/{id}")
     public ModelAndView updateProductPage(@PathVariable("id") int id) {

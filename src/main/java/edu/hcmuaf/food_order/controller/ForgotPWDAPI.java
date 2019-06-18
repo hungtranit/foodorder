@@ -7,7 +7,9 @@ import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -24,24 +26,43 @@ public class ForgotPWDAPI {
     UserService userService;
 
     @GetMapping("/forgot-password")
-    public String getForgotPwd() {
+    public String getForgotPwd(Model model) {
+        model.addAttribute("infoUser", new InfoUser());
         return "forgot-password";
     }
 
     @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
-    public ResponseEntity<?> createPassword(@Valid @RequestBody InfoUser infoUser) {
-        boolean result;
+    public String createPassword(Model model, @ModelAttribute("infoUser") InfoUser infoUser) {
+        String result;
         System.out.println("username: " + infoUser.getUsername());
         System.out.println("exist by user: " + userRepository.existsByUsername(infoUser.getUsername()));
         System.out.println("email: " + infoUser.getEmail());
         System.out.println("exist by email: " + userRepository.existsByEmail(infoUser.getEmail()));
         if (!userRepository.existsByUsername(infoUser.getUsername()) || !userRepository.existsByEmail(infoUser.getEmail())) {
-            result = false;
+            result = "forgot-password";
+            String msg = "Tài khoản hoặc email không đúng!";
+            model.addAttribute("errorForgetPassword", msg);
+            sendErrorForgetPassword(msg);
         } else {
             userService.sendMailCreatePassword(infoUser.getEmail(), infoUser.getUsername());
-            result = true;
+            String msg = "Mật khẩu mới đã gửi đến email!";
+            model.addAttribute("msgSuccess", msg);
+            sendMsgSuccess(msg);
+            result = "login";
         }
-        return ResponseEntity.ok(result);
+        return result;
+    }
+
+    public ModelAndView sendErrorForgetPassword(String msg) {
+        ModelAndView mav = new ModelAndView("forgot-password");
+        mav.addObject("errorForgetPassword", msg);
+        return mav;
+    }
+
+    public ModelAndView sendMsgSuccess(String msg) {
+        ModelAndView mav = new ModelAndView("login");
+        mav.addObject("msgSuccess", msg);
+        return mav;
     }
 
 }

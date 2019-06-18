@@ -54,4 +54,8 @@ public class UserUtil {
         return sb.toString();
     }
 
+    public static void main(String[] args) {
+        randomPassword(12);
+    }
+
 }

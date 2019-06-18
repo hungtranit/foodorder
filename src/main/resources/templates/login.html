@@ -49,6 +49,8 @@
                 <br>
                 <h2 class="title">Đăng Nhập</h2>
                 <span th:text="${errorLogin}" style="font-size: 13px; color: #ffa10b;"></span>
+                <span th:text="${msgSuccess}" style="font-size: 13px; color: #ffa10b;"></span>
+                <span th:text="${registerSuccess}" style="font-size: 13px; color: #ffa10b;"></span>
                 <span id="register-success" style="font-size: 15px;color: #ffa10b;"></span>
                 <form th:action="@{/login}" th:object="${infoUser}" th:method="post">
                     <div class="input-group" style="width:100%;">

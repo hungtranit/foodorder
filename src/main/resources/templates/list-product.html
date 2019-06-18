@@ -4,7 +4,8 @@
 </head>
 <body>
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 <div th:replace="fragment/header-admin::loader"></div>
 <!-- page container area start -->
@@ -32,25 +33,25 @@
                                         <th>Chi tiết</th>
                                         <th>Hình ảnh</th>
                                         <th>Giá</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <th:block th:each="products : ${listProduct}">
-                                    <tr>
-                                        <td><p th:utext="${products.postid}"></p></td>
-                                        <td><a th:href="@{/product-view/{id}(id=${products.postid})}" th:utext="${products.productname}">View</a>
-                                        </td>
-                                        <td><p th:utext="${products.typeproduct}"></p></td>
-                                        <td><p th:utext="${products.decriptionproduct}"></p></td>
-                                        <td><img th:src="@{'../static/myimages/' + ${products.img}}"></td>
-                                        <td><p th:utext="${products.price}"></p></td>
-                                        <td><p th:utext="${products.addressproduct}"></p></td>
-                                        <td><a th:href="@{/product-update/{id}(id=${products.postid})}">Edit</a></td>
-                                        <td><a th:href="@{/deleteProduct/{id}(id=${products.postid})}">Delete</a></td>
-                                    </tr>
+                                        <tr th:if="${products.getTypeproduct() == null}">
+                                            <td><a th:href="@{/product-view/{id}(id=${products.postid})}"
+                                                   th:utext="${products.productname}">View</a>
+                                            </td>
+                                            <td><img th:src="${'/img-product/' + products.img}"
+                                                     style="width: 100px; height: 100px"></td>
+                                            <td><p th:utext="${products.price}"></p></td>
+                                            <td>
+                                                <span>Chỉnh sửa: </span>
+                                                <a th:href="@{/product-update/{id}(id=${products.postid})}">Edit</a>
+                                                <span>Xóa:</span><a
+                                                    th:href="@{/deleteProduct/{id}(id=${products.postid})}">Delete</a>
+                                            </td>
+                                        </tr>
                                     </th:block>
                                     </tbody>
 
