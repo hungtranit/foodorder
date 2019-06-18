@@ -2,6 +2,8 @@ package edu.hcmuaf.food_order.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 

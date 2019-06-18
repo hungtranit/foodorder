@@ -43,7 +43,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int postid;
 
-
     @Field
     @Column(name = "productname", nullable = false)
     private String productname;

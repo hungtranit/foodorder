@@ -7,12 +7,15 @@
     <title>Searching</title>
     <!-- Responsive Stylesheet File -->
     <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="fontawesome-all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
 <section class="container">
@@ -23,95 +26,15 @@
                 <h5>Mua bán, rao vặt nhanh chóng, uy tín tại NLU Food</h5>
             </div>
             <div class="card-body border-bottom">
-                <form action="">
+                <form id="formSearch">
                     <div class="row form-margin">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                    </div>
-                    <div class="row form-margin">
-                        <!--area modal-->
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-light col-5 border" data-toggle="modal"
-                                data-target="#myModal">
-                            <span class="h6 mr-5">Hồ Chí Minh</span>
-                            <span class="mr-5"></span>
-                            <i class="fas fa-sort-down ml-5 output"></i>
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn btn-primary btn-light mr-2" data-toggle="modal"
-                                                data-target="#provincialListModal">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </button>
-                                        <h4 class="modal-title">Modal title</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end modal-->
-                        <!--provincial list Modal -->
-                        <div class="modal fade" id="provincialListModal" tabindex="-1" role="dialog"
-                             aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="">Modal title</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end modal-->
-                        <!--area modal-->
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-light border" data-toggle="modal"
-                                data-target="#listItemModal">
-                            <span class="h6 mr-5">Hồ Chí Minh</span>
-                            <span class="mr-5"></span>
-                            <i class="fas fa-sort-down ml-5 output"></i>
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="listItemModal" tabindex="-1" role="dialog"
-                             aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end modal-->
+                        <input id="searchText" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm"
+                               aria-label="Search">
                     </div>
                 </form>
             </div>
-            <div th:each="detailProduct : ${listProduct}">
-                <div class="card mb-3 mt-2">
+            <div th:each="detailProduct : ${listProduct}" id="detail-product">
+                <div class="card mb-3 mt-2" th:if="${detailProduct.getTypeproduct() != null}">
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img th:src="@{'/img-product/'+ ${detailProduct.getImg()}}" alt="..." class="card-img">
@@ -133,5 +56,6 @@
         </div>
     </div>
 </section>
+<script type="text/javascript" src="/forum/search-product.js"></script>
 </body>
 </html>
