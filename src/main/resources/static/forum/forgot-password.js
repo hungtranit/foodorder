@@ -29,36 +29,4 @@ $(document).ready(function () {
         }
     });
 
-    // $('#form-forgot-password').submit(function (event) {
-    //     event.preventDefault();
-    //     createPassword();
-    // });
-    //
-    // function createPassword() {
-    //     var infoUser = {}
-    //     infoUser["username"] = $('#forgot-username').val(),
-    //         infoUser["email"] = $('#forgot-email').val();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/forgot-password",
-    //         contentType: "application/json",
-    //         data: JSON.stringify(infoUser),
-    //         dataType: 'json',
-    //         success: function (result) {
-    //             console.log("result: " + result);
-    //             if (result == true) {
-    //                 $('#register-success').text('Kiểm tra mail để xem mật khẩu mới!!!');
-    //                 window.location.href = "/login";
-    //             } else {
-    //                 $('#create-new-password-fail').text('Tài khoản hoặc email không đúng!!!');
-    //                 window.location.href = "/forgot-password";
-    //             }
-    //         },
-    //         error: function (e) {
-    //             console.log("this error: " + e);
-    //             // window.location.href = "/login";
-    //         }
-    //     });
-    // };
-
 });

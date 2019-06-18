@@ -16,7 +16,7 @@ import java.util.Date;
 public class Product {
 
     public Product(String typeproduct, String productname, String decriptionproduct, String addressproduct,
-                   String img, int price, String username, String phone, String quantity) {
+                   String img, int price, String username, String phone) {
         this.typeproduct = typeproduct;
         this.productname = productname;
         this.decriptionproduct = decriptionproduct;
@@ -25,14 +25,17 @@ public class Product {
         this.price = price;
         this.username = username;
         this.phone = phone;
-        this.quantity = quantity;
     }
 
-    public Product(String productname, String img, int price, String quantity) {
+    public Product(String productname, String img, int price) {
         this.productname = productname;
         this.img = img;
         this.price = price;
-        this.quantity = quantity;
+    }
+
+    public Product(String addressproduct, String phone) {
+        this.addressproduct = addressproduct;
+        this.phone = phone;
     }
 
     @Id
@@ -75,10 +78,6 @@ public class Product {
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String typeproduct;
 
-    @Column(name = "quantity", nullable = false)
-    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
-    private String quantity;
-
     @Field
     @Column(name = "phone", nullable = false)
     private String phone;
@@ -117,10 +116,6 @@ public class Product {
 
     public String getTypeproduct() {
         return typeproduct;
-    }
-
-    public String getQuantity() {
-        return quantity;
     }
 
     public String getPhone() {

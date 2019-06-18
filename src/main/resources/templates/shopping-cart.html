@@ -300,25 +300,30 @@
             </div>
         </form>
         <br>
-        <form>
-            <div class="input-group mb-3">
-                <div class="input-group-append">
-                    <span class="input-group-text">Địa Chỉ</span>
+        <form th:action="@{/order}" th:object="${detailUser}" th:method="get">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>
+                        <label class="w3-text-blue"><b>Địa chỉ</b></label>
+                        <input class="w3-input w3-border" name="addresss" type="text"
+                               th:field="*{addressofuser}" th:value="${detailUser.getAddressofuser()}"></p>
                 </div>
-                <input type="text" class="form-control" placeholder="Địa chỉ">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-append">
-                    <span class="input-group-text">Số Điện Thoại</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>
+                        <label class="w3-text-blue"><b>Số điện thoại</b></label>
+                        <input class="w3-input w3-border" name="phone" type="text" th:field="*{phone}"
+                               th:value="${detailUser.getPhone()}">
+                    </p>
                 </div>
-                <input type="text" class="form-control" placeholder="Số điện thoại">
             </div>
+            <br>
+            <a th:href="@{/order}" class="btn btn-update" th:if="${infoUser.getUsername() != null}">Đặt Hàng</a>
+            <a th:href="@{/login}" class="btn btn-update" th:if="${infoUser.getUsername() == null}">Đặt Hàng</a>
         </form>
-        <br>
-        <a th:href="@{/order}" class="btn btn-update" th:if="${infoUser.getUsername() != null}">Đặt Hàng</a>
-        <a th:href="@{/login}" class="btn btn-update" th:if="${infoUser.getUsername() == null}">Đặt Hàng</a>
     </div>
 </div>
+<div th:insert="footer.html :: footer"></div>
+<div th:fragment="footer"></div>
 <script src="/home/lib/jquery/jquery.min.js"></script>
 <script src="/home/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/home/lib/owlcarousel/owl.carousel.min.js"></script>

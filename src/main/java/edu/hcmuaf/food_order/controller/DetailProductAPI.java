@@ -44,7 +44,7 @@ public class DetailProductAPI {
     public ResponseEntity<?> postProduct(@Valid @RequestBody Product product) {
         product = new Product(product.getTypeproduct(), product.getProductname(), product.getDecriptionproduct(),
                 product.getAddressproduct(), product.getImg(), product.getPrice(),
-                sendDataAPI.getInfoUserSession().getUsername(), product.getPhone(), product.getQuantity());
+                sendDataAPI.getInfoUserSession().getUsername(), product.getPhone());
         System.out.println("frint first: " + product.toString());
         productService.insertProduct(product);
         return ResponseEntity.ok("post-product");

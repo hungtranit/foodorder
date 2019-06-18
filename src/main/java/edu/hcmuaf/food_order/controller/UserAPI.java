@@ -1,13 +1,13 @@
 package edu.hcmuaf.food_order.controller;
 
 import edu.hcmuaf.food_order.model.InfoUser;
+import edu.hcmuaf.food_order.model.Product;
 import edu.hcmuaf.food_order.repository.ProductRepository;
 import edu.hcmuaf.food_order.repository.QuestionRepository;
 import edu.hcmuaf.food_order.repository.TypeProductRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
-import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -50,6 +50,7 @@ public class UserAPI {
             System.out.println("login fail");
             String massage = "Tài khoản hoặc khẩu không đúng";
             model.addAttribute("errorLogin", massage);
+            sendErrorLogin(massage);
             url = "login";
         } else {
             System.out.println("login success");
@@ -88,46 +89,45 @@ public class UserAPI {
     }
 
     @GetMapping("/order")
-    public String orderFood(Model model) {
+    public String orderFood(Model model, @ModelAttribute("detailUser") Product product) {
         System.out.println("session list product: " + sendDataAPI.getCart());
-        userService.orderCart(sendDataAPI.getInfoUserSession().getEmail(), sendDataAPI.getCart());
+        System.out.println("address: " + product.getAddressproduct());
+        System.out.println("phone: " + product.getPhone());
+        userService.orderCart(sendDataAPI.getInfoUserSession().getEmail(), sendDataAPI.getCart(),
+                product.getAddressproduct(), product.getPhone());
         getIndex(model);
         sendDataAPI.setCart(new ArrayList<>());
+        sendDataAPI.getHttpSessionCart().removeAttribute("cart");
         return "index";
     }
 
-    @RequestMapping(value = "productadmin", method = RequestMethod.POST)
+    public ModelAndView sendErrorLogin(String msg) {
+        ModelAndView mav = new ModelAndView("login");
+        mav.addObject("errorLogin", msg);
+        return mav;
+    }
+
     public ModelAndView sendProductAdmin() {
         ModelAndView mav = new ModelAndView("services");
         mav.addObject("productadmin", productRepository.findAll());
         return mav;
     }
 
-    @RequestMapping(value = "typeproduct", method = RequestMethod.POST)
     public ModelAndView sendTypeProduct() {
         ModelAndView mav = new ModelAndView("products");
         mav.addObject("typeproduct", typeProductRepository.findAll());
         return mav;
     }
 
-    @RequestMapping(value = "typequestion", method = RequestMethod.POST)
     public ModelAndView sendTypeQuestion() {
         ModelAndView mav = new ModelAndView("question");
         mav.addObject("typequestion", questionService.findDistinctType());
         return mav;
     }
 
-    @RequestMapping(value = "question", method = RequestMethod.POST)
     public ModelAndView sendListQuestion() {
         ModelAndView mav = new ModelAndView("question");
         mav.addObject("question", questionRepository.findAll());
-        return mav;
-    }
-
-    @RequestMapping(value = "errorLogin", method = RequestMethod.POST)
-    public ModelAndView sendError(String errorLogin) {
-        ModelAndView mav = new ModelAndView("login");
-        mav.addObject("errorLogin", errorLogin);
         return mav;
     }
 

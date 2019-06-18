@@ -29,7 +29,7 @@ public class UserService {
         return false;
     }
 
-    public boolean orderCart(String mail, List<Item> listCart) {
+    public boolean orderCart(String mail, List<Item> listCart, String phone, String address) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -48,11 +48,12 @@ public class UserService {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
             message.setSubject("Đơn Hàng");
             String text = "";
-            for (Item item : sendDataAPI.getCart()) {
+            for (Item item : listCart) {
                 System.out.println("detail cart " + item);
                 text += item.getProduct().getProductname() + ", Số Lượng " + item.getQuantity() + ", Giá: "
                         + item.getQuantity() * item.getProduct().getPrice() + "\n";
             }
+            text += "Địa chỉ: " + address + ", Số điện thoại: " + phone;
             message.setText(text);
             Transport.send(message);
         } catch (MessagingException e) {
