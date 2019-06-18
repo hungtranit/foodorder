@@ -28,16 +28,16 @@
             </div>
             <div class="awesome-project-content">
                 <!-- single-awesome-project start -->
-                <div class="col-md-4 col-sm-4 col-xs-12 design development" th:each="productDetail : ${typeproduct}">
+                <div class="col-md-3 col-sm-3 col-xs-12 design development" th:each="productDetail : ${typeproduct}">
                     <div class="single-awesome-project">
                         <div class="awesome-img mt-a mb-a">
                             <a th:href="@{'/search-page/' + ${productDetail.getTypeproduct()}}">
-                                <img th:src="@{'/img-product/' + ${productDetail.getImg()}}"  alt="">
+                                <img th:src="@{'/img-product/' + ${productDetail.getImg()}}" alt="">
                             </a>
                             <div class="add-actions text-center">
                                 <div class="project-dec">
-                                    <a class="venobox" data-gall="myGallery" th:href="@{'/search-page/' + ${productDetail.getTypeproduct()}}">
-                                        <h4 >Nhấn để xem ảnh</h4>
+                                    <a th:href="@{'/search-page/' + ${productDetail.getTypeproduct()}}">
+                                        <h4 th:text="${productDetail.getNametype()}"></h4>
                                     </a>
                                 </div>
                             </div>

@@ -44,20 +44,20 @@
         h1 {
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 2.5em;
+            font-size: 1.5em;
         }
 
         p {
-            font-size: 1.5em;
+            font-size: 1em;
             color: #8a8a8a;
         }
 
         input {
-            border: 0.3em solid #bbc3c6;
+            border: 0.1em solid #bbc3c6;
             padding: 0.5em 0.3em;
             font-size: 1.4em;
             color: #8a8a8a;
-            text-align: center;
+            text-align: left;
         }
 
         img {
@@ -74,13 +74,13 @@
         .container-shopping-cart {
             max-width: 75em;
             width: 95%;
-            margin: 40px auto;
+            margin-left: 120px;
+            margin-top: 70px;
             overflow: hidden;
             position: relative;
-
             border-radius: 0.6em;
-            background: #ecf0f1;
-            box-shadow: 0 0.5em 0 rgba(138, 148, 152, 0.2);
+            background: white;
+            overflow: auto;
         }
 
         .heading-shopping-cart {
@@ -88,11 +88,12 @@
             position: relative;
             z-index: 1;
             color: #f7f7f7;
-            background: #f34d35;
+
+            /*background: #f34d35;*/
         }
 
         .cart {
-            margin: 2.5em;
+            margin-top: 30px;
             overflow: hidden;
         }
 
@@ -114,18 +115,21 @@
         }
 
         .th {
-            background: #f34d35;
-            color: #fff;
+            /*background: #f34d35;*/
+            color: #000000;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 1.5em;
+            font-size: 1em;
+            border-bottom: solid 1px black ;
+            margin-bottom: 5px;
         }
 
         .tf {
-            background: #f34d35;
+            background: #FFFFFF;
             text-transform: uppercase;
             text-align: right;
             font-size: 1.2em;
+            border-bottom: solid 1px black ;
         }
 
         .tf p {
@@ -160,7 +164,7 @@
         }
 
         .col-numeric p {
-            font: bold 1.8em helvetica;
+            font: bold 1em helvetica;
         }
 
         .col-total p {
@@ -168,7 +172,8 @@
         }
 
         .tf .col {
-            width: 20%;
+            width: 30%;
+            text-align: center;
         }
 
         .row > div {
@@ -188,7 +193,7 @@
             width: 1em;
             line-height: 1em;
             border-radius: 2em;
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: bold;
             text-align: center;
             background: #43ace3;
@@ -249,15 +254,15 @@
 <body>
 <div th:insert="header.html :: header"></div>
 <div th:fragment="header"></div>
-<br><br>
+
 <div class="container-shopping-cart">
     <div class="heading-shopping-cart">
         <h1>
-            Shopping Cart
+            Giỏ Hàng
         </h1>
     </div>
     <div class="cart transition">
-        <a href="#" class="btn btn-update">Update cart</a>
+        <a href="#" class="btn btn-update">Cập Nhật</a>
         <form class="table">
             <div class="layout-inline row th">
                 <div class="col col-first"></div>
@@ -269,7 +274,7 @@
                 <div class="col">Thành Tiền</div>
                 <div class="col">Xóa</div>
             </div>
-            <h3 th:if="${sizeList == 0}">Không sản phẩm nào được đưa vào giỏ hàng</h3>
+            <h3 th:if="${sizeList == 0}"> Không sản phẩm nào được đưa vào giỏ hàng</h3>
             <div class="layout-inline row" th:each="detailCart : ${listProductCart}">
                 <div class="col col-first"></div>
                 <div class="col col-pro layout-inline">
@@ -292,10 +297,11 @@
             </div>
             <div class="tf">
                 <div class="row layout-inline">
+                    <div class="col"></div>
                     <div class="col">
                         <p th:text="'Tổng tiền: ' + ${totalMoney} + ' VNĐ'"></p>
                     </div>
-                    <div class="col"></div>
+
                 </div>
             </div>
         </form>
