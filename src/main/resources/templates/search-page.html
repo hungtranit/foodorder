@@ -15,7 +15,6 @@
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
 <section class="container">
@@ -37,7 +36,9 @@
                 <div class="card mb-3 mt-2" th:if="${detailProduct.getTypeproduct() != null}">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img th:src="@{'/img-product/'+ ${detailProduct.getImg()}}" alt="..." class="card-img">
+                            <img th:src="@{'/img-product/'+ ${detailProduct.getImg()}}"
+                                 th:href="@{'/detail-product/' + ${detailProduct.getPostid()}}" alt="..."
+                                 class="card-img">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -56,6 +57,5 @@
         </div>
     </div>
 </section>
-<script type="text/javascript" src="/forum/search-product.js"></script>
 </body>
 </html>
