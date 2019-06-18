@@ -7,6 +7,7 @@ import edu.hcmuaf.food_order.repository.TypeProductRepository;
 import edu.hcmuaf.food_order.repository.UserRepository;
 import edu.hcmuaf.food_order.service.QuestionService;
 import edu.hcmuaf.food_order.service.UserService;
+import edu.hcmuaf.food_order.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class UserAPI {
@@ -56,12 +58,19 @@ public class UserAPI {
             sendDataAPI.getSession().setAttribute("infoUser", infoUser);
             getPageHome(model);
             url = "index";
+            model.addAttribute("qualityProduct", sendDataAPI.getCart().size());
+            sendDataAPI.sendCart();
         }
         return url;
     }
 
     @GetMapping({"/", "/index"})
     public String getPageHome(Model model) {
+        getIndex(model);
+        return "index";
+    }
+
+    public void getIndex(Model model) {
         model.addAttribute("infoUser", sendDataAPI.getInfoUserSession());
         sendDataAPI.sendInfoUser();
         System.out.println("infoUser: " + sendDataAPI.getInfoUserSession().getUsername());
@@ -74,6 +83,16 @@ public class UserAPI {
         sendListQuestion();
         model.addAttribute("typequestion", questionService.findDistinctType());
         sendTypeQuestion();
+        model.addAttribute("qualityProduct", sendDataAPI.getCart().size());
+        sendDataAPI.sendCart();
+    }
+
+    @GetMapping("/order")
+    public String orderFood(Model model) {
+        System.out.println("session list product: " + sendDataAPI.getCart());
+        userService.orderCart(sendDataAPI.getInfoUserSession().getEmail(), sendDataAPI.getCart());
+        getIndex(model);
+        sendDataAPI.setCart(new ArrayList<>());
         return "index";
     }
 
@@ -120,6 +139,7 @@ public class UserAPI {
         sendDataAPI.sendInfoUser();
         model.addAttribute("question", questionRepository.findAll());
         model.addAttribute("typequestion", questionService.findDistinctType());
+        sendDataAPI.setCart(new ArrayList<>());
         return "index";
     }
 

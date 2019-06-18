@@ -42,6 +42,8 @@ public class ForumAPI {
         question = questionRepository.getOne(questionID);
         idQuestion = questionID;
         sendDetailQuestion(model, questionID, url);
+        model.addAttribute("qualityProduct", sendDataAPI.getCart().size());
+        sendDataAPI.sendCart();
         return url;
     }
 

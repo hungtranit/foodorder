@@ -46,9 +46,9 @@
                  th:if="${detailProduct.getTypeproduct() == null}">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team-member pad-3">
-                        <div class="team-img">
-                            <a th:href="@{'/detail-product/' + ${detailProduct.getPostid()}}">
-                                <img th:src="@{'/img-product/'+ ${detailProduct.getImg()}}" alt="">
+                        <div class="team-img mt-a mb-a">
+                            <a  th:href="@{'/detail-product/' + ${detailProduct.getPostid()}}" >
+                                <img class="pad-t-1" th:src="@{'/img-product/'+ ${detailProduct.getImg()}}"  alt="">
                             </a>
                         </div>
                         <div class="team-content">

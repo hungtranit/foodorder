@@ -56,6 +56,8 @@ public class DetailProductAPI {
         sendDataAPI.sendInfoUser();
         model.addAttribute("detailProduct", productRepository.getOne(productID));
         getProduct(productID);
+        model.addAttribute("qualityProduct", sendDataAPI.getCart().size());
+        sendDataAPI.sendCart();
         return "detail-product";
     }
 

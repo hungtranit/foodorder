@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Favicons -->
     <link href="/home/img/favicon.png" rel="icon">
@@ -136,11 +135,19 @@
 
         .col {
             padding: 1em;
-            width: 12%;
+            width: 15%;
         }
 
         .col-pro {
-            width: 44%;
+            width: 20%;
+        }
+
+        .col-price {
+            width: 20%;
+        }
+
+        .col-first {
+            width: 5%
         }
 
         .col-pro > * {
@@ -253,38 +260,63 @@
         <a href="#" class="btn btn-update">Update cart</a>
         <form class="table">
             <div class="layout-inline row th">
-                <div class="col col-pro">Product</div>
+                <div class="col col-first"></div>
+                <div class="col col-pro">Tên Sản Phẩm</div>
                 <div class="col col-price align-center ">
-                    Price
+                    Giá
                 </div>
-                <div class="col col-qty align-center">QTY</div>
-                <div class="col">Total</div>
+                <div class="col col-qty align-center">Số Lượng</div>
+                <div class="col">Thành Tiền</div>
+                <div class="col">Xóa</div>
             </div>
-            <div class="layout-inline row">
+            <h3 th:if="${sizeList == 0}">Không sản phẩm nào được đưa vào giỏ hàng</h3>
+            <div class="layout-inline row" th:each="detailCart : ${listProductCart}">
+                <div class="col col-first"></div>
                 <div class="col col-pro layout-inline">
-                    <p>Happy Little Critter</p>
+                    <p th:text="${detailCart.getProduct().getProductname()}"></p>
                 </div>
                 <div class="col col-price col-numeric align-center ">
-                    <p>£59.99</p>
+                    <p th:text="${detailCart.getProduct().getPrice()} + ' VNĐ'"></p>
                 </div>
                 <div class="col col-qty layout-inline">
                     <a href="#" class="qty qty-minus">-</a>
-                    <input type="numeric" value="3"/>
+                    <input type="numeric" th:value="${detailCart.getQuantity()}"/>
                     <a href="#" class="qty qty-plus">+</a>
                 </div>
-                <div class="col col-total col-numeric"><p> £182.95</p>
+                <div class="col col-total col-numeric"><p
+                        th:text="${detailCart.getQuantity()} * ${detailCart.getProduct().getPrice()} + 'VNĐ'"></p>
+                </div>
+                <div class="col">
+                    <a th:href="@{'/shopping-cart/remove/' + ${detailCart.getProduct().getPostid()}}">X</a>
                 </div>
             </div>
             <div class="tf">
                 <div class="row layout-inline">
                     <div class="col">
-                        <p>Total</p>
+                        <p th:text="'Tổng tiền: ' + ${totalMoney} + ' VNĐ'"></p>
                     </div>
                     <div class="col"></div>
                 </div>
             </div>
         </form>
-        <a href="#" class="btn btn-update">Đặt Hàng</a>
+        <br>
+        <form>
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text">Địa Chỉ</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Địa chỉ">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text">Số Điện Thoại</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Số điện thoại">
+            </div>
+        </form>
+        <br>
+        <a th:href="@{/order}" class="btn btn-update" th:if="${infoUser.getUsername() != null}">Đặt Hàng</a>
+        <a th:href="@{/login}" class="btn btn-update" th:if="${infoUser.getUsername() == null}">Đặt Hàng</a>
     </div>
 </div>
 <script src="/home/lib/jquery/jquery.min.js"></script>
