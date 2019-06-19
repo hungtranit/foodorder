@@ -19,7 +19,4 @@ public interface UserRepository extends JpaRepository<InfoUser, String> {
     @Modifying
     @Query("update InfoUser u set u.passworduser = ?1 where u.username = ?2")
     void updatePassword(String password, String username);
-
-
-
 }
